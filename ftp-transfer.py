@@ -1,5 +1,6 @@
 import ftplib
 import sys
+import time 
 
 # Connect to FTP Client and cd to directory containing brownfields`
 ftp = ftplib.FTP('ftp.gov.ab.ca')
@@ -17,8 +18,11 @@ ftp.quit()
 # Print Length of List to confirm Download Worked
 print('There are ' +  str(len( EsaList )) + ' items in the file' )
 
+# Get Date and Time to Distinguish files
+now = time.strftime("%H.%M.%S--%m-%d-%Y")
+
 # Save EsaList into a file
-with open( 'EsaNew.txt', 'w' ) as file_object:
+with open( 'ESA' + '-' + now + '.txt', 'w' ) as file_object:
     for item in EsaList:
         file_object.write( str( item ) +"\n" )
-    print('Saving to EsaNew.txt')
+    print('Printing to: ESA' + '-' + now + '.txt')
