@@ -7,6 +7,7 @@ ftp.login()
 ftp.cwd('/env/ESAR')
 
 # Create a list of all ESA entries
+# Note: Each index in the list is a string
 EsaList = []
 ftp.retrlines('RETR CompleteEsaSiteList.csv', EsaList.append )
 
@@ -16,5 +17,8 @@ ftp.quit()
 # Print Length of List to confirm Download Worked
 print('There are ' +  str(len( EsaList )) + ' items in the file' )
 
-
-
+# Save EsaList into a file
+with open( 'EsaNew.txt', 'w' ) as file_object:
+    for item in EsaList:
+        file_object.write( str( item ) +"\n" )
+    print('Saving to EsaNew.txt')
