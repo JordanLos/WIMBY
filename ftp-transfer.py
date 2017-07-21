@@ -45,11 +45,31 @@ with open(filename + '.txt') as f:
     del workingEsa[1]
 
 
+#----REMOVAL ALL BUT EDMONTON------#
+
+# Legal Land Description Contians ATLA and ATS
+# First, we must isolate the first number
+testEsa = []
+for row in workingEsa[:10]:
+    testEsa.append( row[3].split(';')[0] )
+
+# Iterate Through full ESA list to identify:
+# 1) ATLA numbers (7 digits), 2) Edmonton (3rd digit == 2)
+edmontonLlds = []
+for row in workingEsa:
+    # LLD is in the 4th column
+    # ATLA number is first in ';' delimited set in LLD
+    # Removes all but the first set of numbers for each LLD entry
+    lld = row[3].split(';')[0]
+
+    # Tests for Edmonton ATLA 
+    if ( len(lld) == 7 ):
+        if lld[2] == '2':
+            edmontonLlds.append( row )
+
 #----------CONVERT TO JSON----------#
 import json
 
-with open(filename + '.json', 'w') as f_obj:
-    json.dump(workingEsa, f_obj, sort_keys=True, indent=4)
-
-
-
+with open('Edmonton-ESA' + now + '.json', 'w') as f_obj:
+    json.dump(edmontonLlds, f_obj, sort_keys=True, indent=4)
+    print('Saving to: Edmonton-ESA' + now + '.json')
