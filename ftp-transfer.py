@@ -2,6 +2,8 @@ import ftplib
 import sys
 import time 
 
+#-----DOWNLOAD AND SAVE AS CSV-----#
+
 # Connect to FTP Client and cd to directory containing brownfields`
 ftp = ftplib.FTP('ftp.gov.ab.ca')
 ftp.login()
@@ -22,7 +24,32 @@ print('There are ' +  str(len( EsaList )) + ' items in the file' )
 now = time.strftime("%H.%M.%S--%m-%d-%Y")
 
 # Save EsaList into a file
-with open( 'ESA' + '-' + now + '.txt', 'w' ) as file_object:
+filename =  'ESA' + '-' + now 
+    
+with open( filename + '.txt', 'w' ) as file_object:
     for item in EsaList:
         file_object.write( str( item ) +"\n" )
-    print('Printing to: ESA' + '-' + now + '.txt')
+    print('Saving to: ' + filename + '.txt')
+
+#------CREATE A LIST OF LIST FROM CSV-----#
+import csv
+
+workingEsa = []
+with open(filename + '.txt') as f:
+    reader = csv.reader(f)
+    
+    for row in reader:
+       workingEsa.append( row )
+
+    # Second Row is series of '----' and not needed
+    del workingEsa[1]
+
+
+#----------CONVERT TO JSON----------#
+import json
+
+with open(filename + '.json', 'w') as f_obj:
+    json.dump(workingEsa, f_obj, sort_keys=True, indent=4)
+
+
+
