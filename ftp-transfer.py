@@ -2,7 +2,7 @@ import ftplib
 import sys
 import time 
 
-#-----DOWNLOAD AND SAVE AS CSV-----#
+#-----DOWNLOAD ESA LIST AND SAVE AS CSV-----#
 
 # Connect to FTP Client and cd to directory containing brownfields`
 ftp = ftplib.FTP('ftp.gov.ab.ca')
@@ -34,22 +34,33 @@ with open( filename + '.txt', 'w' ) as file_object:
 #------CREATE A LIST OF LIST FROM CSV-----#
 import csv
 
-workingEsa = []
-with open(filename + '.txt') as f:
-    reader = csv.reader(f)
+# Create Function to move CSV to List
+def csv_to_list(infile, rmRow=''):
+    """Converts CSV file to a list, option to delete Row
+    should the file contain '----'"""
     
-    for row in reader:
-       workingEsa.append( row )
+    listName = []
+    with open(infile) as f:
+        reader = csv.reader(f)
 
-    # Second Row is series of '----' and not needed
-    del workingEsa[1]
+        for row in reader:
+            listName.append( row )
+
+        if rmRow:
+            del listName[rmRow]
+
+    return listName
+
+# Make a working list for the ESA and PBL CSV files
+workingESA = csv_to_list(filename + '.txt', 1)
+workingPBL = csv_to_list('Property_Information_Data.csv')
 
 
 #----------CONVERT TO JSON----------#
 import json
 
 with open(filename + '.json', 'w') as f_obj:
-    json.dump(workingEsa, f_obj, sort_keys=True, indent=4)
+    json.dump(workingESA, f_obj, sort_keys=True, indent=4)
 
 
 
