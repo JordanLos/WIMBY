@@ -1,19 +1,23 @@
+import json
 from data import download, csvToList, decomposeESA, decomposeEdmLine
 
 # download()
 
 rawESA = csvToList('ESA-data.txt', 1)
 ESA_PBL = decomposeESA( rawESA )
-
 rawEdm = csvToList('./data/Property_Information_Data.csv')
 
-edmLine = decomposeEdmLine( rawEdm[52][4] )
-print( edmLine )
+class Contaminated_Site():
+    """An individual contaminated site"""
 
-edm_PBL = []
+    def __init__(self, house, street, plan, block, lot):
+        self.house = house
+        self.street = street
+        self.plan = plan
+        self.block = block
+        self.lot = lot
+contaminatedSites = []
 
-if rawEdm[2][4]:
-    print(str(rawEdm[2][4]))
 for row in rawEdm:
     try:
         row[4].split(' ')[1]
@@ -21,12 +25,16 @@ for row in rawEdm:
         continue
     else:
         pbl = decomposeEdmLine( row[4] )
-        edm_PBL.append( pbl )
+        house = row[2]
+        street = row[3]
+        plan = pbl[1]
+        block = pbl[2]
+        lot = pbl[3]
+    for entry in ESA_PBL:
+        if pbl[0] == entry:
+            site = Contaminated_Site( house, street, plan, block, lot) 
+            contaminatedSites.append( site )
 
-match = 0
-for entry in edm_PBL:
-    if entry[0][2] != '2':
-        match = match + 1
+print( len( contaminatedSites ))             
 
-print( match )
-    
+
