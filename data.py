@@ -101,3 +101,34 @@ def decomposeESA(rawESA):
     
     return( ESA_PBL )
 
+# Decomepose Line of EDMONTON to PBL
+def decomposeEdmLine( cell ):
+    """ Decomposes a LLD in the Edmonton Property Data to a list of its plan, block, lot, and PBL"""
+    # The function will be passed the cell by the calling line
+    inProcessPbl = cell.split('/')[0]
+    inProcessPbl = cell.split(' ')
+    
+    plan = inProcessPbl[1]
+
+    try:
+        inProcessPbl[4]
+    except IndexError:
+        block = '0000'
+    else:
+        block = inProcessPbl[4]
+
+    try:
+        inProcessPbl[7]
+    except IndexError:
+        lot = '000000'
+    else:
+        lot = inProcessPbl[7]
+
+    pbl = plan.zfill(7) + block.zfill(4) + lot.zfill(6)
+
+    return( pbl, plan, block, lot )
+
+
+
+
+
