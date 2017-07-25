@@ -146,21 +146,31 @@ for row in workingESA:
 
     workingPBL = ''.join([plan,block,lot])
     ESAllds.append( workingPBL )
-    print( workingPBL )
 
+
+#-------Basic Error Checking-----------#
 LLDS = []
 for entry in ESAllds:
     LLDS.append( len(entry))
-print( set( LLDS))
+if set(LLDS) != 17:
+    print('PBL Numbers have incorrect length')
 
-with open('ESAllds.txt','w') as f:
-    for item in ESAllds:
-        f.write( str( item ) +"\n" )
-    print('saving ESAllds.txt')
+if len(workingESA) != len(ESAllds):
+    print('Lists not equal!: ' + 'workingESA length: ' + len(workingESA) + 
+        'ESAllds: ' + len(ESAllds) )
+else:
+    print('Lengths equal')
 
-for entry in ESAllds:
-    if entry[2] != '2':
-        print('uh-oh')
-print( len(workingESA) )
-print( len(ESAllds ))
+i = 0
+match = True
+while i < 1436:
+    if ESAllds[i][:7] != workingESA[i][3][:7]: 
+        print('Plots not equavivalent')
+        match = False
+        break
+    i = i + 1
+    
+if match:
+    print('Plots are equivalent')
+
 
