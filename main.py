@@ -18,11 +18,11 @@ from data import download, csvToList, decomposeESA, decomposeEdmLine, findContam
 with open('Contaminated-Sites-In-Edmonton.geojsonp','w') as f:
     # Format for geoJSON
     f.write('eqfeed_callback(')
-    f.write('{\n\t"type": "FeatureCollection",\n\t"features: [')
+    f.write('{\n\t"type": "FeatureCollection",\n\t"features": [')
 
     # Insert All attributes
     fspecOpen = '\n\t\t{\n\t\t\t"type": "Feature",\n\t\t\t"properties": ' \
-        '{},\n\t\t\t"geometry": {\n\t\t\t\t"type: ' \
+        '{},\n\t\t\t"geometry": {\n\t\t\t\t"type": ' \
         '"Point",\n\t\t\t\t"coordinates": [\n\t\t\t\t\t'
     fspecEnd = '\n\t\t\t\t]\n\t\t\t}\n\t\t},'
     
