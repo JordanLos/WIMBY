@@ -128,8 +128,43 @@ def decomposeEdmLine( cell ):
 
     return( pbl, plan, block, lot )
 
+def findContaminatedSites(rawEdm, ESA_PBL):
+    class Contaminated_Site():
+        """An individual contaminated site"""
 
+        def __init__(self, house, street, plan, block, lot, lat, lng):
+            self.house = house
+            self.street = street
+            self.plan = plan
+            self.block = block
+            self.lot = lot
+            self.lat = lat
+            self.lng = lng
 
+    contaminatedSites = []
+    for row in rawEdm:
+        # Not LLD's are PBL's and will produce an IndexError - ignore them and move 
+        # to next row
+        try:
+            row[4].split(' ')[1]
+        except IndexError:
+            continue
 
-
-
+        # Break the rawEdm into components, including its unique PBL number
+        else: 
+            pbl = decomposeEdmLine( row[4] )
+            house = row[2]
+            street = row[3]
+            plan = pbl[1]
+            block = pbl[2]
+            lot = pbl[3]
+            lat = row[8]
+            lng = row[9]
+        # Test the unique PBL numbers for the current with for a match in the ESA 
+        # list. If the match exists, create a new Contaminated_Site instace and add 
+        # it to the list of contaminated sites
+        for entry in ESA_PBL:
+            if pbl[0] == entry:
+                site = Contaminated_Site( house, street, plan, block, lot, lat, lng )
+                contaminatedSites.append( site )
+    return contaminatedSites
