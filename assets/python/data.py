@@ -1,7 +1,8 @@
-import ftplib
 
 def download():
     """ Downloads ESA list from the ESRD site"""
+
+    import ftplib
 
     # Connect to FTP Client and cd to directory containing brownfields`
     ftp = ftplib.FTP('ftp.gov.ab.ca')
@@ -19,7 +20,7 @@ def download():
     # Print Length of List to confirm Download Worked
     print('There are ' +  str(len( EsaList )) + ' items in the file' )
         
-    with open( 'ESA-data.txt', 'w' ) as file_object:
+    with open( './data/ESA-data.txt', 'w' ) as file_object:
         for item in EsaList:
             file_object.write( str( item ) +"\n" )
         print('Saving to: ESA-data.txt')

@@ -3217,6 +3217,16 @@ eqfeed_callback({
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
+					-113.47388310126,53.4948628879874
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
 					-113.354488352817,53.5076715835642
 				]
 			}
