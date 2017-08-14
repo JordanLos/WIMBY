@@ -10,5 +10,5 @@ Icon
 ._*
 
 .sass-cache
-
+*.css.map
 

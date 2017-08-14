@@ -1,53 +1,50 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<style>
-			/* Set Map Height Explicitly */
-			#map {
-				height: 100%;
-			}
-			/* Make the page fill the window */
-			html, body {
-				height: 100%;
-				margin: 0;
-				padding: 0;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="map"></div>
-		<script>
-			var map;
-			function initMap() {
-				// Create new Map
-				map = new google.maps.Map(document.getElementById('map'), {
-					zoom: 12,
-					center: new google.maps.LatLng(53.5444573, -113.4909777),
-					mapTypeId: 'terrain'
-				});
-
-				// dynamically load the GeoJSON data
-				var script = document.createElement('script');
-				script.src = './data/Contaminated-Sites-In-Edmonton.geojsonp';
-				document.getElementsByTagName('head')[0].appendChild(script);
-			}
-
-			// Loop the data returned from the GeoJSON eqfeed_callback
-			// and create a marker for each coordinate
-			window.eqfeed_callback = function(results) {
-				for (var i = 0; i < results.features.length; i++) {
-					var coords = results.features[i].geometry.coordinates;
-					var latLng = new google.maps.LatLng(coords[1],coords[0]);
-					var marker = new google.maps.Marker({
-						position: latLng,
-						map: map
-					});
-				}
-			}
-		</script>
-		<script async defer
-	   src = 
-	   "https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7V0HWhwqhQkSlN-zwYaQBnSurJYVpQY&callback=initMap">
-		</script>
-	</body>
+<html lang="en">
+  <head>
+    <style>
+      /* Set Map Height Explicitly */
+      #map  {
+      	height: 100%;
+      }
+      html, body {
+      	height: 100%;
+      	margin: 0;
+      	padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+      	// Create new Map
+      	map = new google.maps.Map(document.getElementById('map'), {
+      		zoom: 12,
+      		center: new google.maps.LatLng(53.5444573, -113.4909777),
+      		mapTypeId: 'terrain'
+      	});
+      
+      	// dynamically load the GeoJSON data
+      	var script = document.createElement('script');
+      	script.src = './data/Contaminated-Sites-In-Edmonton.geojsonp';
+      	document.getElementsByTagName('head')[0].appendChild(script);
+      }
+      
+      // Loop the data returned from the GeoJSON eqfeed_callback
+      // and create a marker for each coordinate
+      window.eqfeed_callback = function(results) {
+      	for (var i = 0; i < results.features.length; i++) {
+      		var coords = results.features[i].geometry.coordinates;
+      		var latLng = new google.maps.LatLng(coords[1],coords[0]);
+      		var marker = new google.maps.Marker({
+      			position: latLng,
+      			map: map
+      		});
+      	}
+      }
+      
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7V0HWhwqhQkSlN-zwYaQBnSurJYVpQY&amp;callback=initMap"></script>
+  </body>
 </html>
