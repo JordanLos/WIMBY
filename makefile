@@ -2,7 +2,6 @@ SHELL := /bin/bash
 
 all:
 
-production:
 
 watch-sass:
 	sass --watch assets/scss/master.scss:assets/css/main.css 
@@ -10,7 +9,10 @@ watch-sass:
 render-jade:
 	jade -P -o ./ --watch assets/jade/index.jade
 
+start-browser-sync:
+	browser-sync start --server --files "assets/js/*.js, assets/css/*.css, index.html"
 
-render-jade:
+dev:
+	make watch-sass render-jade start-browser-sync -j
 
-
+production:
