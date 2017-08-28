@@ -12,6 +12,10 @@ html(lang="en")
 				padding: 0;
 			}
 	body
+		#landing
+			h1#bigNumber 400
+			h2 Contaminated Sites in Edmonton
+
 		#map
 		script.
 			var map;
@@ -41,5 +45,39 @@ html(lang="en")
 					});
 				}
 			}
+		#yItMatters
+			h1 Why It Matters
+			h2 What Can Happen
+			p Worst case scenarios have already happened in Alberta. The community of Lynnwood in S.E. Calgary was built in the early 1980’s on the site of an old Imperial Oil refinery that operated until 1977. Signs of contamination were found as early as 1985. In 2001, after 20 years of residents living on highly contaminated soil, the City of Calgary issued a notice to the 230 plus homes indicating they would would need to vacate their properties. However, Imperial Oil spent several years fighting the court order to clean up the contaminants and it wasn’t until 2006 that remediation finally began. As of 2015, 35 years after the community was built and almost 15 years after finding contaminants, news reports indicate the clean-up was entering its final stages. Adverse health effects due to contaminants were difficult to prove. To date, there have been no successful cases against Imperial Oil relating to the health problems potentially caused by the contaminants. 
+				a(href='http://www.calgarysun.com/2015/10/31/after-15-years-of-cleaning-contaminated-calgary-neighbourhood-new-life-looming-for-lynnview-ridge') [1]
+
+			p On top of large contaminated sites, numerous other smaller contaminated sites exist as well. Owners of these smaller sites often leave them vacant for decades or find ways charge taxpayers for the clean-up costs. One gas station in Bowness, another Calgary community, leaked as much as 9,000 Litres of gasoline into the ground which migrated underneath residential homes. After insufficiently preventing migration, the owners of the gas station transferred the property to a newly incorporated company. As a result, the Province has had to step in and estimates about $4.3 Million for clean-up. As of a 2017 news report, 7 years after residents first complained of gas fumes in their homes, the contaminants are only beginning to be removed despite soil tests finding benzene levels reaching 480 times safe levels.
+				a(href='http://calgaryherald.com/news/local-news/taxpayers-face-4-3-million-bill') [2]
+
+			p Surprisingly, cities in Alberta do not have the legal power to inspect and remediate contaminated privately owned contaminated sites and requires provincial approval for they do own. Perhaps more concerning, though, is that the neither the cities nor the province has an extensive catalogue of contaminated sites. Owners of property, and the Province, hesitate to avoid cataloguing contaminated sites since determining a site is contaminated can lower the value of the land.<a href='http://www.cbc.ca/news/canada/calgary/calgary-contaminated-toxic-sites-cleanup-city-charters-1.4150058')>[3]</a>And since the cost of remediation often exceeds the property value, private land owners often choose the less expensive option of leaving the site abandoned. Some contaminated sites remain vacant for decades, wasting value inner-city real estate. One gas station on Edmonton’s popular Whyte Avenue, while now slated for a large multi-family development, remained vacant for nearly 20 years. These abandoned sites increase the problem of urban sprawl by leaving valuable inner-city land undeveloped and unused. 
+				a(href='https://beta.theglobeandmail.com/report-on-business/industry-news/property-report/life-after-corner-gas-the-challenges-of-developing-old-service-stations/article32219739/?ref=http://www.theglobeandmail.com') [4]
+			h1 What Can I Do?
+			h2 Use The Map
+			p The map above is a listing of all sites that have completed a Phase II Environmental Site Assessment (ESA). That means the owner of the property first conducted a Phase I ESA. Phase I ESA’s don’t involve any actual testing, but use historical and current information to determine if the site is a likely candidate for contamination. If the Phase I ESA determines the site may be contaminated, the owner must conduct a Phase II ESA. The Phase II tests soil and groundwater to determine if, and to what extent, a site is contaminated. Once the owner has found remediated the site, or found some interim solution to contain the contamination, they may apply for a Phase III or Phase IV. With that in mind, note the following about the map:
+			ul
+				li Not all the sites are contaminated. Some may have been remediated but not applied for Phase III or Phase IV, or the Phase II may have found the site not contaminated.
+				li This is not all the contaminated sites in Edmonton. For all the reasons stated above, there is no current catalogue of contaminated sites within the city. Many contaminated sites remain unknown and undocumented.
+			h2 Learn How The Remediation Process Works
+			p Read the official documents to find out more about contaminated sites within the Province and the development of Brownfields(Contaminated sites with the potential for redevelopment):
+			ul
+				li <a href='https://www.edmonton.ca/programs_services/funding_grants/brownfield-redevelopment-grant-program.aspx'>Edmonton Brownfield Development Grant</a>
+				li <a href='https://www.edmonton.ca/programs_services/documents/ESAGuidebook.pdf'>ESA Guidebook</a>
+			h2 Consider The Trade Offs
+			p Many of the services that are essential to making a city possible can contaminate the ground. Our municipalities have regulations and oversight into what is a reasonable risk. But the people most affected by contamination, those living in and around contaminated sites, often have no idea what kind of risks they are taking or what recourse they have in the event of contamination. Understanding the location of potential contaminants and the clean-up process allows citizens to make more informed decisions about what risks they are willing to accept and what kind of expectations a city should have of its business owners in the life-cycle of sites potentially contaminating the ground.
+			h2 Get Involved
+			ul
+				li Share On FB/Twitter
+				li Learn about the <a href-'https://www.alberta.ca/documents/City-Charters-Overview-Package.pdf'>City Charters.</a> City Charters are provisions unique to each city that allow the cities to modify or replace the Municipal Government Act, the current piece of legislation governing all 344 municipalities in the province. The City Charters can give cities the ability to pass environmental bylaws related to contaminated sites, including charging differential rates to polluters who refuse to clean contaminated sites. Read more <a href='http://edmontonjournal.com/news/local-news/proposed-city-charter-gives-edmonton-and-calgary-more-powers-including-taxing-bad-properties-more'>here</a>.
+			h1 How Did You Build This?
+			h2 With Open Data
+			p All of the information on used for the map is freely available from the Government of Alberta and the City of Edmonton’s Open Data Library. Edmonton is the first Organization in Canada and the United States to adopt the Open Data Charter as part of its Open City Initiative. Edmonton’s Open City Initiative is about using the massive amount of data the city of Edmonton possess as a strategic asset that is open by default and private when necessary. Open Data means individuals, businesses, and developers (like myself) can taken advantage of the datasets easily and use them to help create an informed and engaged public.
+			p Read More About Edmonton's Open City Initiative <a href='https://www.edmonton.ca/city_government/documents/PDF/CityofEdmonton_OpenDataStrategy.pdf'>here</a>.
+			h2 With Magic
+			p Comparing hundreds of thousands of entries in multiple databases was done primarily with Python. For those who with a technical itch to scratch you can read the code <a href='http://www.github.com/jordanlos/wimby'>here</a>.
 
 		script(async, defer, src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7V0HWhwqhQkSlN-zwYaQBnSurJYVpQY&callback=initMap")

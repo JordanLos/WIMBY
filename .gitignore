@@ -12,3 +12,6 @@ Icon
 .sass-cache
 *.css.map
 
+# editor files
+*.swp
+
