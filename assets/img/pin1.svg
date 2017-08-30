@@ -1,0 +1,13 @@
+<svg width="36" height="36" xmlns="http://www.w3.org/2000/svg" class="feather feather-map-pin">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="38" width="38" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <circle fill="#ffffff" id="svg_2" r="3" cy="8.504032" cx="9.23489"/>
+  <path stroke="#002625" fill="#eb9b02" id="svg_1" d="m31.305631,14.737896c0,10.595315 -13.622548,19.677014 -13.622548,19.677014s-13.622548,-9.081699 -13.622548,-19.677014a13.622548,13.622548 0 0 1 27.245096,0z"/>
+  <ellipse ry="4.527558" rx="4.397269" id="svg_3" cy="15.719935" cx="17.543988" stroke-opacity="null" stroke-width="null" stroke="#002625" fill="#002625"/>
+ </g>
+</svg>

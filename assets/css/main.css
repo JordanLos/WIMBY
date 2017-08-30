@@ -1,24 +1,100 @@
-#media-grid {
-  -webkit-column-count: 2;
-  -moz-column-count: 2;
-  column-count: 2;
-  -webkit-column-gap: 2%;
-  -moz-column-gap: 2%;
-  column-gap: 2%; }
-  #media-grid > div {
-    display: inline-block;
-    width: 100%; }
-  @media (max-width: 768px) {
-    #media-grid {
-      -webkit-column-count: 1;
-      -moz-column-count: 1;
-      column-count: 1; } }
-  #media-grid > div {
-    margin-bottom: 20px;
-    height: 80px; }
-  #media-grid > div:nth-child(2n) {
-    height: 200px; }
-  #media-grid > div:nth-child(5n) {
-    height: 120px; }
+body {
+  background: #173042;
+  padding: 0;
+  margin: 0; }
+
+h1, p, h2 {
+  color: white; }
+
+/* #landing {
+	height: 50vw;
+	x-overflow: hidden;
+	* background: url("../img/skyline-greenspace.jpeg") no-repeat center top;
+	background-size: cover;
+	background-color: rgba( $primary-dark, 0.9 );
+	background-blend-mode: multiply;
+	position: relative;
+}
+*/
+#map {
+  filter: blur(1px); }
+
+#landing {
+  position: absolute;
+  top: 0;
+  background: linear-gradient(to bottom, transparent 75%, #173042), radial-gradient(circle at center, rgba(35, 100, 119, 0.2) 20%, #173042);
+  height: 100%;
+  width: 100%; }
+
+.text-box {
+  position: absolute;
+  width: 83.333333%;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #EB6902; }
+  .text-box h1, .text-box h2, .text-box h3, .text-box h4, .text-box h5, .text-box h6 {
+    text-align: center;
+    color: white; }
+  .text-box h1 {
+    font-size: 72px; }
+
+#number {
+  position: absolute;
+  top: 0;
+  width: 20%;
+  padding: 5px 10px 25px 10px;
+  transform: translateY(-50%);
+  background: #EB6902;
+  border: 2px solid white; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500; }
+
+p {
+  font-family: 'Lato', sans-serif;
+  font-weight: 100; }
+
+#center-title {
+  border-bottom: 1px solid #EB6902;
+  padding: 72px 0 24px 0; }
+
+#center-line {
+  border-right: 1px solid #EB6902;
+  padding-bottom: 16px;
+  margin-bottom: 0;
+  margin-top: 0; }
+
+.bottom-row h3 {
+  padding-top: 12px; }
+
+#text-center {
+  text-align: center; }
+
+.contrast-color {
+  color: #EB6902; }
+
+.catchline {
+  position: absolute;
+  top: 66%;
+  width: 83.3333%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center; }
+
+.content {
+  width: 83.33333%;
+  margin: 0 auto; }
+  .content h1 {
+    text-align: center;
+    border: 2px solid #EB6902;
+    padding: 12px 0; }
+  .content h2 {
+    text-align: right;
+    vertical-align: bottom; }
+  .content p {
+    padding-top: 8px;
+    text-align: justify; }
 
 /*# sourceMappingURL=main.css.map */

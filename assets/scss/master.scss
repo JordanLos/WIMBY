@@ -1,18 +1,120 @@
 @import "kube";
+@import "palettes";
+@import "layouts/shared";
 
+body {
+	background: $primary-dark;
+	padding: 0;
+	margin: 0;
+}
+h1, p, h2 {
+	color: $near-white;
+}
 
-#media-grid {
+/* #landing {
+	height: 50vw;
+	x-overflow: hidden;
+	* background: url("../img/skyline-greenspace.jpeg") no-repeat center top;
+	background-size: cover;
+	background-color: rgba( $primary-dark, 0.9 );
+	background-blend-mode: multiply;
+	position: relative;
+}
+*/
+#map {
+	filter: blur(1px);
+}
+#landing {
+	position: absolute;
+	top: 0;
+	background: 
+		linear-gradient( to bottom,transparent 75%, $primary-dark),
+		radial-gradient( circle at center, rgba( $primary-light, 0.2) 20%,  
+		$primary-dark);
+	height: 100%;
+	width: 100%;
+}
 
-	@include grid-media-columns(2);
-
-	& > div {
-		margin-bottom: 20px;
-		height: 80px;
+.text-box {
+	position: absolute;
+	width: 83.333333%; 
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	border: 2px solid $contrast-light;
+	h1, h2, h3, h4, h5, h6{
+		text-align: center;
+		color: $near-white;
 	}
-	& > div:nth-child(2n) {
-		height: 200px;
-	}
-	& > div:nth-child(5n) {
-		height: 120px;
+	h1 {
+		font-size: 72px;
 	}
 }
+#number {
+	position: absolute;
+	top: 0;
+	width: 20%;
+	padding: 5px 10px 25px 10px;
+	transform: translateY(-50%);
+	background: $contrast-light;
+	border: 2px solid $near-white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Cormorant Garamond', serif;
+	font-weight: 500;
+}
+p {
+	font-family: 'Lato', sans-serif;
+	font-weight: 100;
+}
+#center-title {
+	border-bottom: 1px solid $contrast-light;
+	padding: 72px 0 24px 0;
+}
+#center-line {
+	// Needed to add small border on right hand size
+	border-right: 1px solid $contrast-light;
+	padding-bottom: 16px;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+.bottom-row {
+	h3 {
+		padding-top: 12px;
+	}
+}
+#text-center {
+	text-align: center;
+}
+
+.contrast-color {
+	color: $contrast-light;
+}
+.catchline {
+	position: absolute;
+	top: 66%;
+	width: 83.3333%;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+}
+
+.content {
+	width: 83.33333%;
+	margin: 0 auto;
+	h1 {
+		text-align: center;
+		border: 2px solid $contrast-light;
+		padding: 12px 0;
+	}
+	h2 {
+		text-align: right;
+		vertical-align: bottom;
+	}
+	p {
+		padding-top: 8px;
+		text-align: justify;
+	}
+}
+
