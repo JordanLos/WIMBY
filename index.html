@@ -290,15 +290,37 @@
       // and create a marker for each coordinate
       window.eqfeed_callback = function(results) {
       	var pinColor = "0d052b";
+      	var heatmapData = [];
       	var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor);
       	for (var i = 0; i < results.features.length; i++) {
       		var coords = results.features[i].geometry.coordinates;
       		var latLng = new google.maps.LatLng(coords[1],coords[0]);
-      		var marker = new google.maps.Marker({
-      			position: latLng,
-      			map: map,
-      		});
+      		heatmapData.push(latLng);
       	}
+      	var gradient = [
+      	  'rgba(0, 255, 255, 0)',
+      	  'rgba(0, 255, 255, 1)',
+      	  'rgba(0, 191, 255, 1)',
+      	  'rgba(0, 127, 255, 1)',
+      	  'rgba(0, 63, 255, 1)',
+      	  'rgba(0, 0, 255, 1)',
+      	  'rgba(0, 0, 223, 1)',
+      	  'rgba(0, 0, 191, 1)',
+      	  'rgba(0, 0, 159, 1)',
+      	  'rgba(0, 0, 127, 1)',
+      	  'rgba(63, 0, 91, 1)',
+      	  'rgba(127, 0, 63, 1)',
+      	  'rgba(191, 0, 31, 1)',
+      	  'rgba(255, 0, 0, 1)'
+      	]
+      	var heatmap = new google.maps.visualization.HeatmapLayer({
+      		data: heatmapData,
+      		dissipating: false,
+      		opacity: 0.3,
+      		gradient: gradient,
+      		map: map
+      	});
+      	console.log(heatmap);
       }
       
     </script>
@@ -366,5 +388,6 @@
       </div>
     </div>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7V0HWhwqhQkSlN-zwYaQBnSurJYVpQY&amp;callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7V0HWhwqhQkSlN-zwYaQBnSurJYVpQY&amp;libraries=visualization&amp;callback=initMap"></script>
   </body>
 </html>

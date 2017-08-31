@@ -1,6 +1,7 @@
 @import "kube";
 @import "palettes";
 @import "layouts/shared";
+$primary-dark: darken( #173042, 7%);
 
 body {
 	background: $primary-dark;
@@ -21,15 +22,12 @@ h1, p, h2 {
 	position: relative;
 }
 */
-#map {
-	filter: blur(1px);
-}
 #landing {
 	position: absolute;
 	top: 0;
 	background: 
 		linear-gradient( to bottom,transparent 75%, $primary-dark),
-		radial-gradient( circle at center, rgba( $primary-light, 0.2) 20%,  
+		radial-gradient( circle at center, rgba( $primary-light, 0.2) 30%,  
 		$primary-dark);
 	height: 100%;
 	width: 100%;

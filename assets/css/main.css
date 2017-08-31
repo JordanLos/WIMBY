@@ -1,5 +1,5 @@
 body {
-  background: #173042;
+  background: #0e1d28;
   padding: 0;
   margin: 0; }
 
@@ -16,13 +16,10 @@ h1, p, h2 {
 	position: relative;
 }
 */
-#map {
-  filter: blur(1px); }
-
 #landing {
   position: absolute;
   top: 0;
-  background: linear-gradient(to bottom, transparent 75%, #173042), radial-gradient(circle at center, rgba(35, 100, 119, 0.2) 20%, #173042);
+  background: linear-gradient(to bottom, transparent 75%, #0e1d28), radial-gradient(circle at center, rgba(35, 100, 119, 0.2) 30%, #0e1d28);
   height: 100%;
   width: 100%; }
 
