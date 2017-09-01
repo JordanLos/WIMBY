@@ -4,7 +4,7 @@ html(lang="en")
 		meta( name="viewport", content="width=device-width, initial-scale=1.0")
 		style.
 			/* Set Map Height Explicitly */
-			#map  {
+			#map, #map2  {
 				height: 100%;
 			}
 			html, body {
@@ -16,12 +16,16 @@ html(lang="en")
 		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cormorant|Lato:100")
 		link(rel="stylesheet", type="text/css", href="assets/css/kube.min.css")
 		link(rel="stylesheet", type="text/css", href="assets/css/main.css")
+		script(src="https://code.jquery.com/jquery-3.2.1.min.js", integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=", crossorigin="anonymous")
+		script(src="./assets/js/main.js")
+
 	body
 		#map
 		#landing
 			.text-box
 				.row.align-center
-					h1#number 400
+					#numberBox  
+						h1#number . . .
 				.row.around#center-title
 					h1 Contaminated Sites in Edmonton
 				.row.bottom-row
@@ -30,290 +34,7 @@ html(lang="en")
 			.catchline
 				h2 Have you ever wondered whats in your backyard?
 				h2.contrast-color This is a real-time map. Learn what it means for you. 
-		script.
-			var map;
-			function initMap() {
-				// Create new Map
-				map = new google.maps.Map(document.getElementById('map'), {
-					zoom: 12,
-					center: {lat: 53.5334573, lng: -113.4909777},
-					styles: [
-					  {
-					    "elementType": "geometry",
-					    "stylers": [
-					      {
-					        "color": "#1d2c4d"
-					      }
-					    ]
-					  },
-					  {
-					    "elementType": "labels.text.fill",
-					    "stylers": [
-					      {
-					        "color": "#8ec3b9"
-					      }
-					    ]
-					  },
-					  {
-					    "elementType": "labels.text.stroke",
-					    "stylers": [
-					      {
-					        "color": "#1a3646"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "administrative.country",
-					    "elementType": "geometry.stroke",
-					    "stylers": [
-					      {
-					        "color": "#4b6878"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "administrative.land_parcel",
-					    "elementType": "labels.text.fill",
-					    "stylers": [
-					      {
-					        "color": "#64779e"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "administrative.province",
-					    "elementType": "geometry.stroke",
-					    "stylers": [
-					      {
-					        "color": "#4b6878"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "landscape.man_made",
-					    "elementType": "geometry.stroke",
-					    "stylers": [
-					      {
-					        "color": "#334e87"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "landscape.natural",
-					    "elementType": "geometry",
-					    "stylers": [
-					      {
-					        "color": "#023e58"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "poi",
-					    "elementType": "geometry",
-					    "stylers": [
-					      {
-					        "color": "#283d6a"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "poi",
-					    "elementType": "labels.text.fill",
-					    "stylers": [
-					      {
-					        "color": "#6f9ba5"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "poi",
-					    "elementType": "labels.text.stroke",
-					    "stylers": [
-					      {
-					        "color": "#1d2c4d"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "poi.park",
-					    "elementType": "geometry.fill",
-					    "stylers": [
-					      {
-					        "color": "#023e58"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "poi.park",
-					    "elementType": "labels.text.fill",
-					    "stylers": [
-					      {
-					        "color": "#3C7680"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "road",
-					    "elementType": "geometry",
-					    "stylers": [
-					      {
-					        "color": "#304a7d"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "road",
-					    "elementType": "labels.text.fill",
-					    "stylers": [
-					      {
-					        "color": "#98a5be"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "road",
-					    "elementType": "labels.text.stroke",
-					    "stylers": [
-					      {
-					        "color": "#1d2c4d"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "road.highway",
-					    "elementType": "geometry",
-					    "stylers": [
-					      {
-					        "color": "#2c6675"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "road.highway",
-					    "elementType": "geometry.stroke",
-					    "stylers": [
-					      {
-					        "color": "#255763"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "road.highway",
-					    "elementType": "labels.text.fill",
-					    "stylers": [
-					      {
-					        "color": "#b0d5ce"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "road.highway",
-					    "elementType": "labels.text.stroke",
-					    "stylers": [
-					      {
-					        "color": "#023e58"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "transit",
-					    "elementType": "labels.text.fill",
-					    "stylers": [
-					      {
-					        "color": "#98a5be"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "transit",
-					    "elementType": "labels.text.stroke",
-					    "stylers": [
-					      {
-					        "color": "#1d2c4d"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "transit.line",
-					    "elementType": "geometry.fill",
-					    "stylers": [
-					      {
-					        "color": "#283d6a"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "transit.station",
-					    "elementType": "geometry",
-					    "stylers": [
-					      {
-					        "color": "#3a4762"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "water",
-					    "elementType": "geometry",
-					    "stylers": [
-					      {
-					        "color": "#0e1626"
-					      }
-					    ]
-					  },
-					  {
-					    "featureType": "water",
-					    "elementType": "labels.text.fill",
-					    "stylers": [
-					      {
-					        "color": "#4e6d70"
-					      }
-					    ]
-					  }
-					]
-				});
 
-				// dynamically load the GeoJSON data
-				var script = document.createElement('script');
-				script.src = './data/Contaminated-Sites-In-Edmonton.geojsonp';
-				document.getElementsByTagName('head')[0].appendChild(script);
-			}
-
-			// Loop the data returned from the GeoJSON eqfeed_callback
-			// and create a marker for each coordinate
-			window.eqfeed_callback = function(results) {
-				var pinColor = "0d052b";
-				var heatmapData = [];
-				var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor);
-				for (var i = 0; i < results.features.length; i++) {
-					var coords = results.features[i].geometry.coordinates;
-					var latLng = new google.maps.LatLng(coords[1],coords[0]);
-					heatmapData.push(latLng);
-				}
-				var gradient = [
-				  'rgba(0, 255, 255, 0)',
-				  'rgba(0, 255, 255, 1)',
-				  'rgba(0, 191, 255, 1)',
-				  'rgba(0, 127, 255, 1)',
-				  'rgba(0, 63, 255, 1)',
-				  'rgba(0, 0, 255, 1)',
-				  'rgba(0, 0, 223, 1)',
-				  'rgba(0, 0, 191, 1)',
-				  'rgba(0, 0, 159, 1)',
-				  'rgba(0, 0, 127, 1)',
-				  'rgba(63, 0, 91, 1)',
-				  'rgba(127, 0, 63, 1)',
-				  'rgba(191, 0, 31, 1)',
-				  'rgba(255, 0, 0, 1)'
-				]
-				var heatmap = new google.maps.visualization.HeatmapLayer({
-					data: heatmapData,
-					dissipating: false,
-					opacity: 0.3,
-					gradient: gradient,
-					map: map
-				});
-				console.log(heatmap);
-			}
 
 		#yItMatters.content
 			h1 Why It Matters
@@ -328,6 +49,7 @@ html(lang="en")
 
 					p Surprisingly, cities in Alberta do not have the legal power to inspect and remediate contaminated privately owned contaminated sites and requires provincial approval for they do own. Perhaps more concerning, though, is that the neither the cities nor the province has an extensive catalogue of contaminated sites. Owners of property, and the Province, hesitate to avoid cataloguing contaminated sites since determining a site is contaminated can lower the value of the land.<a href='http://www.cbc.ca/news/canada/calgary/calgary-contaminated-toxic-sites-cleanup-city-charters-1.4150058')>[3]</a>And since the cost of remediation often exceeds the property value, private land owners often choose the less expensive option of leaving the site abandoned. Some contaminated sites remain vacant for decades, wasting value inner-city real estate. One gas station on Edmonton’s popular Whyte Avenue, while now slated for a large multi-family development, remained vacant for nearly 20 years. These abandoned sites increase the problem of urban sprawl by leaving valuable inner-city land undeveloped and unused. 
 						a(href='https://beta.theglobeandmail.com/report-on-business/industry-news/property-report/life-after-corner-gas-the-challenges-of-developing-old-service-stations/article32219739/?ref=http://www.theglobeandmail.com') [4]
+		#map2
 		#whatToDo.content
 			h1 What Can I Do?
 			.row
@@ -365,6 +87,4 @@ html(lang="en")
 				.text.col.col-7.push-right
 					p Comparing hundreds of thousands of entries in multiple databases was done primarily with Python. For those who with a technical itch to scratch you can read the code <a href='http://www.github.com/jordanlos/wimby'>here</a>.
 
-		script(async, defer, src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7V0HWhwqhQkSlN-zwYaQBnSurJYVpQY&callback=initMap")
-		script(async, defer, 
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7V0HWhwqhQkSlN-zwYaQBnSurJYVpQY&libraries=visualization&callback=initMap")
+		script(async, defer, src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7V0HWhwqhQkSlN-zwYaQBnSurJYVpQY&libraries=visualization&callback=initMap")

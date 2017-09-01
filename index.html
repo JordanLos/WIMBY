@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       /* Set Map Height Explicitly */
-      #map  {
+      #map, #map2  {
       	height: 100%;
       }
       html, body {
@@ -17,13 +17,17 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cormorant|Lato:100">
     <link rel="stylesheet" type="text/css" href="assets/css/kube.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="./assets/js/main.js"></script>
   </head>
   <body>
     <div id="map"></div>
     <div id="landing">
       <div class="text-box">
         <div class="row align-center">
-          <h1 id="number">400</h1>
+          <div id="numberBox"> 
+            <h1 id="number">. . .</h1>
+          </div>
         </div>
         <div id="center-title" class="row around">
           <h1>Contaminated Sites in Edmonton</h1>
@@ -38,292 +42,6 @@
         <h2 class="contrast-color">This is a real-time map. Learn what it means for you. </h2>
       </div>
     </div>
-    <script>
-      var map;
-      function initMap() {
-      	// Create new Map
-      	map = new google.maps.Map(document.getElementById('map'), {
-      		zoom: 12,
-      		center: {lat: 53.5334573, lng: -113.4909777},
-      		styles: [
-      		  {
-      		    "elementType": "geometry",
-      		    "stylers": [
-      		      {
-      		        "color": "#1d2c4d"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "elementType": "labels.text.fill",
-      		    "stylers": [
-      		      {
-      		        "color": "#8ec3b9"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "elementType": "labels.text.stroke",
-      		    "stylers": [
-      		      {
-      		        "color": "#1a3646"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "administrative.country",
-      		    "elementType": "geometry.stroke",
-      		    "stylers": [
-      		      {
-      		        "color": "#4b6878"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "administrative.land_parcel",
-      		    "elementType": "labels.text.fill",
-      		    "stylers": [
-      		      {
-      		        "color": "#64779e"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "administrative.province",
-      		    "elementType": "geometry.stroke",
-      		    "stylers": [
-      		      {
-      		        "color": "#4b6878"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "landscape.man_made",
-      		    "elementType": "geometry.stroke",
-      		    "stylers": [
-      		      {
-      		        "color": "#334e87"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "landscape.natural",
-      		    "elementType": "geometry",
-      		    "stylers": [
-      		      {
-      		        "color": "#023e58"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "poi",
-      		    "elementType": "geometry",
-      		    "stylers": [
-      		      {
-      		        "color": "#283d6a"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "poi",
-      		    "elementType": "labels.text.fill",
-      		    "stylers": [
-      		      {
-      		        "color": "#6f9ba5"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "poi",
-      		    "elementType": "labels.text.stroke",
-      		    "stylers": [
-      		      {
-      		        "color": "#1d2c4d"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "poi.park",
-      		    "elementType": "geometry.fill",
-      		    "stylers": [
-      		      {
-      		        "color": "#023e58"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "poi.park",
-      		    "elementType": "labels.text.fill",
-      		    "stylers": [
-      		      {
-      		        "color": "#3C7680"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "road",
-      		    "elementType": "geometry",
-      		    "stylers": [
-      		      {
-      		        "color": "#304a7d"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "road",
-      		    "elementType": "labels.text.fill",
-      		    "stylers": [
-      		      {
-      		        "color": "#98a5be"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "road",
-      		    "elementType": "labels.text.stroke",
-      		    "stylers": [
-      		      {
-      		        "color": "#1d2c4d"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "road.highway",
-      		    "elementType": "geometry",
-      		    "stylers": [
-      		      {
-      		        "color": "#2c6675"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "road.highway",
-      		    "elementType": "geometry.stroke",
-      		    "stylers": [
-      		      {
-      		        "color": "#255763"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "road.highway",
-      		    "elementType": "labels.text.fill",
-      		    "stylers": [
-      		      {
-      		        "color": "#b0d5ce"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "road.highway",
-      		    "elementType": "labels.text.stroke",
-      		    "stylers": [
-      		      {
-      		        "color": "#023e58"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "transit",
-      		    "elementType": "labels.text.fill",
-      		    "stylers": [
-      		      {
-      		        "color": "#98a5be"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "transit",
-      		    "elementType": "labels.text.stroke",
-      		    "stylers": [
-      		      {
-      		        "color": "#1d2c4d"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "transit.line",
-      		    "elementType": "geometry.fill",
-      		    "stylers": [
-      		      {
-      		        "color": "#283d6a"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "transit.station",
-      		    "elementType": "geometry",
-      		    "stylers": [
-      		      {
-      		        "color": "#3a4762"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "water",
-      		    "elementType": "geometry",
-      		    "stylers": [
-      		      {
-      		        "color": "#0e1626"
-      		      }
-      		    ]
-      		  },
-      		  {
-      		    "featureType": "water",
-      		    "elementType": "labels.text.fill",
-      		    "stylers": [
-      		      {
-      		        "color": "#4e6d70"
-      		      }
-      		    ]
-      		  }
-      		]
-      	});
-      
-      	// dynamically load the GeoJSON data
-      	var script = document.createElement('script');
-      	script.src = './data/Contaminated-Sites-In-Edmonton.geojsonp';
-      	document.getElementsByTagName('head')[0].appendChild(script);
-      }
-      
-      // Loop the data returned from the GeoJSON eqfeed_callback
-      // and create a marker for each coordinate
-      window.eqfeed_callback = function(results) {
-      	var pinColor = "0d052b";
-      	var heatmapData = [];
-      	var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor);
-      	for (var i = 0; i < results.features.length; i++) {
-      		var coords = results.features[i].geometry.coordinates;
-      		var latLng = new google.maps.LatLng(coords[1],coords[0]);
-      		heatmapData.push(latLng);
-      	}
-      	var gradient = [
-      	  'rgba(0, 255, 255, 0)',
-      	  'rgba(0, 255, 255, 1)',
-      	  'rgba(0, 191, 255, 1)',
-      	  'rgba(0, 127, 255, 1)',
-      	  'rgba(0, 63, 255, 1)',
-      	  'rgba(0, 0, 255, 1)',
-      	  'rgba(0, 0, 223, 1)',
-      	  'rgba(0, 0, 191, 1)',
-      	  'rgba(0, 0, 159, 1)',
-      	  'rgba(0, 0, 127, 1)',
-      	  'rgba(63, 0, 91, 1)',
-      	  'rgba(127, 0, 63, 1)',
-      	  'rgba(191, 0, 31, 1)',
-      	  'rgba(255, 0, 0, 1)'
-      	]
-      	var heatmap = new google.maps.visualization.HeatmapLayer({
-      		data: heatmapData,
-      		dissipating: false,
-      		opacity: 0.3,
-      		gradient: gradient,
-      		map: map
-      	});
-      	console.log(heatmap);
-      }
-      
-    </script>
     <div id="yItMatters" class="content">
       <h1>Why It Matters</h1>
       <div class="row">
@@ -335,6 +53,7 @@
         </div>
       </div>
     </div>
+    <div id="map2"></div>
     <div id="whatToDo" class="content">
       <h1>What Can I Do?</h1>
       <div class="row">
@@ -387,7 +106,6 @@
         </div>
       </div>
     </div>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7V0HWhwqhQkSlN-zwYaQBnSurJYVpQY&amp;callback=initMap"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7V0HWhwqhQkSlN-zwYaQBnSurJYVpQY&amp;libraries=visualization&amp;callback=initMap"></script>
   </body>
 </html>

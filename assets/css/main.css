@@ -36,7 +36,7 @@ h1, p, h2 {
   .text-box h1 {
     font-size: 72px; }
 
-#number {
+#numberBox {
   position: absolute;
   top: 0;
   width: 20%;
