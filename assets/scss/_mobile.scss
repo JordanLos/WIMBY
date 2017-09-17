@@ -1,0 +1,47 @@
+@import "kube";
+@import "palettes";
+
+@include breakpoint(sm) {
+	#title-text {
+		font-size: 50px;
+	}
+	.text-box {
+		margin-top: 72px;
+	}
+	#numberBox {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 40%;
+		margin: 0 auto;
+		background: $contrast-light;
+		border: 2px solid $near-white;
+	}
+	#number {
+		font-size: 50px;
+	}
+	.hide-in-small {
+			display: none;
+	}
+	#center-line {
+		border-bottom: 1px solid $contrast-light;
+	}
+	.catchline {
+		position: relative;
+	}
+	.contrast-color {
+		position: absolute;
+		bottom: -160px;
+		font-size: 30px;
+	}
+	.underline {
+		text-align: center;
+	}
+	.content {
+		h2 {
+			text-align: center;
+		}
+	}
+}
+

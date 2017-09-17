@@ -1,0 +1,658 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head><link rel="stylesheet" type="text/css" media="screen" href="http://www.esar.alberta.ca/css/default-new.css" title="default" /><link rel="stylesheet" type="text/css" media="print" href="http://www.esar.alberta.ca/css/print.css" title="print" /><link rel="stylesheet" type="text/css" media="screen" href="http://www.esar.alberta.ca/css/aenv_global.css" title="default" /><link rel="stylesheet" type="text/css" media="screen" href="http://www.esar.alberta.ca/css/ESAR.css" title="default" /> 
+    	
+     <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="css/ie7.css" /><![endif]-->
+    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" /><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /><title>
+	Alberta Environment and Parks - Environmental Site Assessment Repository
+</title>
+
+
+            <script src="script/jquery-1.7.2.min.js" type="text/javascript"></script>
+            <script language="javascript" type="text/javascript">
+				function pageLoad() {
+				    //checkform();
+				    $("#hlpStringATS").load("help/hlpATS.htm");
+				    $("#hlpStringPBL").load("help/hlpPBL.htm");
+				    $("#hlpStringESA").load("help/hlpESAResults.htm");
+				    $("#hlpStringDOC").load("help/hlpESADocResults.htm");
+				    //$('#togglehelpATS').html('&#9658 SHOW HELP');
+				    //$('#togglehelpPBL').html('&#9658 SHOW HELP');
+				    //$('#togglehelpESA').html('&#9658 SHOW HELP');
+				    //$('#togglehelpDOC').html('&#9658 SHOW HELP')
+
+
+				}
+
+				function ShowPanel(id) {
+                    //alert('STARTOFSHOWPANEL');
+                    switch (id) {
+                        case 1:
+                            document.getElementById('pnlATS').style.display = '';
+                            document.getElementById('pnlPBL').style.display = 'none';
+                            break
+                        case 2:
+                            document.getElementById('pnlATS').style.display = 'none';
+                            document.getElementById('pnlPBL').style.display = '';
+                            break
+                     
+                    }
+                    //alert(document.getElementById('pnlPBL').style.display);
+					//alert(document.getElementById('pnlATS').style.display);
+					return false;
+					
+                }
+
+                //function checkform() {
+                //    //alert(   document.getElementById('txtMeridian').value)
+                //    //alert(document.getElementById('txtPlan').value)
+                //    if (document.getElementById('txtMeridian').value != "") {
+                //        //alert('insideATSIF');
+
+                //        //ShowPanel(1);
+                       
+                //    }
+                //    if (document.getElementById('txtPlan').value != "") {
+                //        //alert('insidePBLIF');
+                //        //ShowPanel(2);
+                     
+                //    }
+                //   return false;
+                //}
+
+            </script>
+            <script language="javascript" type="text/javascript">
+            
+            
+			function GetDocumentList(ESA_ID)
+		    {
+		        
+		       DocumentListService.GetDocumentListForESA(ESA_ID, OnDocumentListComplete,OnError);
+		        //put up wait animation??
+		        page.getElementsByTagName("accResults").SelectedIndex = 2;
+		        return;
+		     //   window.alert(ESA_ID);
+	        }
+	        
+	        function OnDocumentListComplete(result)
+	        {
+	           // window.alert("OnDocumentListComplete");
+	            page.getElementsByTagName("gvDocuments").DataSource = result;
+	            //page.getElementsByTagName("gvDocuments").DataBind();
+	            $get("gvDocuments").DataBind();
+	            
+	            return;
+	        }
+	        
+	        function OnError()
+	        {
+	        return;
+	        }
+	        
+            //new function to control the revealing of the Form Help 
+	        function toggleDiv(divId,context) {
+	            $("#" + divId).toggle();
+	            toggleAndChangeText(divId,context);
+	        }
+
+             //new function to change the text of the From Help to Notify it can close the help as well.
+	        function toggleAndChangeText(divId,context) {
+	            if ($('#' + divId).css('display') == 'none' ){
+	                $('.' + context).html('&#9658 SHOW HELP'); //note: default value also set above in pageload
+	            }
+	            else {
+	                $('.' + context).html('&#9660 CLOSE HELP');
+	            }
+	        }
+
+                //Help Service Javascript Component Commented out - Using JQuery to read the .htm help files  
+	            //var hlpString;
+	            //var hlpSearchVal;
+	            //var hlpResultVal;
+	            //var hlpGeneralVal;
+	            //hlpSearchVal="ATS";
+	            //hlpResultVal="";
+	            //hlpGeneralVal='true';
+	        
+	            //function showHelp()
+	            //{
+	            //    var helpType;
+	            //    helpType = hlpGeneralVal + '|' + hlpSearchVal + '|' + hlpResultVal;
+	            //    HelpService.GetHelpHTML(helpType,OnHelpHTMLComplete,OnError);
+	            //    return;
+	            //}
+	        
+	            //function OnHelpHTMLComplete(result)
+	            //{
+	            //    if(result == null) result = '';
+	            
+	            //    $get("hlpString").innerHTML = result;
+	            
+	            //    return;
+	            //}
+
+	            function LegalOK()
+	            {
+	                //Create a Cookie
+	                var cDate = new Date();
+	                cDate.setTime(cDate.getTime() + 3*60*1000);  //expires in 3 minutes
+	                document.cookie = 'ESARLegal=YES; expires=' + cDate.toString() + '; path=/';
+	                HelpService.LegalOK(true, OnLegalOKComplete,OnError);
+	            }
+	        
+	            function OnLegalOKComplete(result)
+	            {   
+	                return;
+	            }
+	        
+	            var styleToSelect;
+    
+    
+	            function alertSize() 
+	            {
+	                var myWidth = 0, myHeight = 0;
+	                if( typeof( window.innerWidth ) == 'number' ) {
+	                    //Non-IE
+	                    myWidth = window.innerWidth;
+	                    myHeight = window.innerHeight;
+	                } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+	                    //IE 6+ in 'standards compliant mode'
+	                    myWidth = document.documentElement.clientWidth;
+	                    myHeight = document.documentElement.clientHeight;
+	                } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+	                    //IE 4 compatible
+	                    myWidth = document.body.clientWidth;
+	                    myHeight = document.body.clientHeight;
+	                }
+	                var retVal;
+	                retVal[0] = myWidth;
+	                retVal[1] = myHeight;
+	                return retVal;
+	            }
+                      
+	            function fixModal()
+	            {
+	                //adjust the legal notice window size based on browser size
+	                var w = document.documentElement.clientWidth;
+	                var h = document.documentElement.clientHeight;
+                
+	                //alert('window.inner: ' + window.innerWidth + ' x ' + window.innerHeight);
+	                //alert('documentElementd.client: ' + document.documentElement.clientWidth + ' x ' + document.documentElement.clientHeight);
+	                //alert('body.client: ' + document.body.clientWidth + ' x ' + document.body.clientHeight);
+	                //alert (w + ' x ' + h)
+                
+	                var cls = 'modalPopup';
+	                if(w < 900 || h < 610)
+	                    cls = 'modalPopupMedium';
+	                if(w < 500 || h < 400)
+	                    cls = 'modalPopupSmall';
+              
+	                document.getElementById('pnlLegal').className = cls;
+                
+                                
+	            }
+	            //function to look up the two fields and look for the one thats blank, and then send the 1 or the 2 to the show function.
+
+
+            
+	            function GetMapUrl()
+	            {
+	                //ESARmap.aspx
+	                var qsIn =  window.location.search.substring(1).split("&");
+	                var c = 0;
+	                var qsOut = '';
+	                for(c = 0; c < qsIn.length; c++)
+	                {
+	                    var nV = qsIn[c].split("=");
+    	            
+	                    if(nV[0] != 'esaid')
+	                        qsOut = qsOut + qsIn[c] + '&';
+	                }        
+                
+	                window.location.href = 'ESARmap.aspx?' + qsOut;
+                
+                
+	            }
+            
+	        </script>
+	</head>
+	<body id="home" onload="fixModal();" >          <!-- OnLoad_fromServer() removed-->
+	
+	<script language="javascript" type="text/javascript">
+<!-- Hide script from old browsers
+//SR02: ESAR site cannot be viewed from a direct url, it must go through the Environment Portal
+    var refAddr = '';
+        refAddr = refAddr.toUpperCase();
+    var refR = document.referrer.toUpperCase();
+    if('' != 'true')
+    {
+        if(refAddr != "")
+        {
+            if(refR.indexOf(refAddr,0) <= 0 && refR.indexOf("ESARMAP.ASPX",0) <= 0 )
+            {                                                                               
+               //are we allowed to come from intro.htm
+                var fromIntro = 'TRUE';
+                    fromIntro = fromIntro.toUpperCase();
+                if(fromIntro == 'TRUE' && refR.indexOf('INTRO.HTM',0) > 0) 
+                    var a;//alert('Coming from intro.htm');
+                else
+                {
+	                //alert('refR: ' +refR + '\nRefAddr: ' + refAddr);
+                    window.location = 'http://' + refAddr;
+                }
+            }
+        }
+    }
+
+
+//-- Stop hiding script -->
+</script>
+    <div id="pageWrap">
+	    <div id="page">
+			<form name="form1" method="post" action="esarmain.aspx" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+
+
+<script src="/ScriptResource.axd?d=0Ct0M91aWQdR_iuNyfJg6miWaSr5nzH9qcBFo5HBEITJhQxqHRjx_owzQq0OAulUDQZwhCFyKBAR24x9zBbOodVF7qttWNtqfc-ORA_5u_FDzYf6dkKsIF8TNECxAzYlx1YKD6LATUCUyjOh162QetRVde41&amp;t=ffffffffbcb9b94a" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=iqUBnQoplnyURUA8kd0xLpVOjqWeozIPzhU6m0Y-0QEEVPiqtyjw6qjtRsSe10F-h6f5nst53uILm0eOBaVzHAnsXQL_PnpGACBQ9M6OQ5XyLelgTidLZqXmOSRXpPOMhZQVM_pTC-7uxh7q0QW8Ath-Bag1&amp;t=ffffffffc7a6ddb0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=POdVtuUtXNqTHG1glceu-TKHclSTaITktWcglKm3eBIQnc37Wv4fn3zw30jIQBHje6NV9R3PCUCig-M9Gjpo23HyLDIIP4_RTH6D1DVbsXbwT6QCcfGBJFFZT7HR7LJGQkNEu12rTwzGQ8HB27-b-47GriM1&amp;t=ffffffffc7a6ddb0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=CfAPZVe7jaN4fi3CiDbGL18AvO8U2swX-gdX9r-J_QDL0THXx6gZwWgouTyHn_EDElftn3EQLvJdnJ3NcB9CloyrOsOti-LEV2c74uNkDZqZtCJWhNbbXHHnH_V2kgly1D6QFpBdrZkJAwPBXBo4zuOD-FkgH0sN-Q97P8CBr2dUV-Zo0&amp;t=ffffffffc7a6ddb0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=kGzpBoWVuUnCnq44n9vgMFAWGiMtjaeDSj3BBoqP5B1b_bKR9KiDinv4hPXM6D0q55_LtcA8y2Aur7XK_vL_694WOAl1b02RlQtlkA4NvtLbxpwwc_8Pnp4C4FhVEjUvING4LwQ78nPxBoX6-AnN47upBMY1&amp;t=ffffffffc7a6ddb0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=U_xe89qAP8HvlNf7YM2H9vVtttdcjbnk4isZqSKKP4W17uzmB-UJZyP0nLAxYShvKNaUvQRmyhYlVCy_OjTqCvOdXuL9XVqDZbOmH52G3DAbYsloMidkskuHpDx5BDACbtEU7a-anwXZcpTpez07uCu0IlQfzDinSV2Bac-_SgoUbhuB0&amp;t=ffffffffc7a6ddb0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=8cxlE7ojES4QJyKTx-siMxPhldp83i0l_4Y4nYD6STQd8vseMFYjpm5L2IexCAhmJpocfyCyeT9UhX-tXfSkYKYWBQNLF9CyLv4seNVndIeu6QqF1j5KGscL_ficWayrdnfb-G31Yq67IXqjOlkoid50HtttiddkMKZl5EYMd_MRfMQh0&amp;t=ffffffffc7a6ddb0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=AWmVlCg3pSSjliarGv5I1ZAetWA3Y1lM-UurNJ_8xpCV-MxZukTdGnCn152Oxaa8SDKf2S-J_cRVTmS7H9TKRnLZg1cIQrfPm2btQzIwtCkswuoE_yzY6lA1Zci9mFw1oWYL6pfckm0b16nMWswNiTE2ic6Kvka3lmYprzuDiFqAneRL0&amp;t=ffffffffc7a6ddb0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=HUoMveun8CAD2r-azTo0U4B0liyMd9kJB2d6IvnaEJ9v0aZhF4qUmQOFO6mcKD8Mcn_8Cbwy2VLAlb2MdDb60PBOK7oF_sIWWwdM6NyUS9W_3WdXv1tdqA5g8Oh5r2KMLF3t6aqRECPiqqO0-u_htb1tZTI1&amp;t=ffffffffc7a6ddb0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=VLrIqf65BcABy-D7DoWf0B2WO0sM6nEI3irMmW5FSZ12hJrNWHnOKIl5Ecp6oaJU_dX5qaEsLRp2GnAqq-p-pR1sjVGUMON-GG5LbxGOm6EFM2WhALr6x9v9phcbaovNUgv3R-J341ggmNrmwnehAB2iCYouRO2bU3m_nvCqOZhICAcn0&amp;t=ffffffffc7a6ddb0" type="text/javascript"></script>
+<script src="DocumentListService.asmx/js" type="text/javascript"></script>
+<script src="HelpService.asmx/js" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="18983E23" />
+<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="Wdpg/N4EEorBc1liPVmYToh+vQAn0p5t+MmDkhsZLVzmAQAT2tXToBqd7EDFNQZSPDLUvnFwbrGbf81vTieukYQZeseMBkNIGULpOPdiq3yEPYGKAJppCV2RSp4600pSiwa+T4VSGHZVzFo/Y3wXcjmkYLj3/9u35y2s6jaMTWmubOFmSE65cNBJy1B2o5UCLbKfiEqC964TMHLoRMgL1SRPEwyMeSvOy18DUp/byv6+pgWAjIQybBzgEc/qgX/1vyRu9g==" />
+            
+                                           
+            <!-- begin Legal Modal Window -->
+            <a id="LinkButton1" href="javascript:__doPostBack('LinkButton1','')"></a>
+            <div id="pnlLegal" class="modalPopup">
+	
+                <table>
+                <tr>
+                <td colspan="2">
+                    <span id="lblLegal"><div id="legalformatting">
+<p class=MsoNormal>September 24, 2008</p>
+<p class=MsoNormal align=center style='text-align:center'>ENVIRONMENTAL SITE ASSESSMENT REPOSITORY DISCLAIMER CLAUSE</p>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+mso-outline-level:3;'><u><span lang=EN-CA style='mso-ansi-language:
+EN-CA;mso-bidi-font-weight:bold'>Applicable Law<o:p></o:p></span></u></p>
+
+<p style=''><span lang=EN-CA style='mso-ansi-language:EN-CA'>By
+clicking "Agree", all users of this web site irrevocably submit to the
+exclusive jurisdiction of the Courts of the <st1:place w:st="on"><st1:PlaceType
+ w:st="on">Province</st1:PlaceType> of <st1:PlaceName w:st="on">Alberta</st1:PlaceName></st1:place>
+in connection with any matter or dispute arising from the use of this web site
+or its contents.<o:p></o:p></span></p>
+
+<p style=''><span lang=EN-CA style='mso-ansi-language:EN-CA'>By
+clicking "Agree", all users of this web site irrevocably waive any defences or
+legal rights respecting conflict of laws, choice of law and <i
+style='mso-bidi-font-style:normal'>forum non conveniens</i>, which but for such
+waiver might otherwise apply, in any legal action commenced in the Province of
+Alberta as a result of any claim arising from the use of this web site and its
+contents<u>.<o:p></o:p></u></span></p>
+
+<p style=''><span lang=EN-CA style='mso-ansi-language:EN-CA'>This
+web site is operated by the Government of Alberta from its offices within the <st1:PlaceType
+w:st="on">Province</st1:PlaceType> of <st1:PlaceName w:st="on">Alberta</st1:PlaceName>,
+<st1:country-region w:st="on"><st1:place w:st="on">Canada</st1:place></st1:country-region>.
+The terms and conditions upon which users may access and use this web site are
+governed by the laws of <st1:State w:st="on">Alberta</st1:State> and the laws
+of <st1:country-region w:st="on">Canada</st1:country-region> applicable in <st1:place
+w:st="on"><st1:State w:st="on">Alberta</st1:State></st1:place>. <o:p></o:p></span></p>
+
+<p style=''><span lang=EN-CA style='mso-ansi-language:EN-CA'>In
+no event shall Alberta Environment or the Government of Alberta be deemed to
+have submitted to the jurisdiction of any Court or tribunal outside of <st1:State
+w:st="on">Alberta</st1:State> as a result of any access to this web site by
+anyone from any location outside <st1:State w:st="on"><st1:place w:st="on">Alberta</st1:place></st1:State>.<u><o:p></o:p></u></span></p>
+
+<p class=MsoNormal><u>Accuracy of Information<o:p></o:p></u></p>
+
+<p class=MsoNormal><span lang=EN-CA style='mso-ansi-language:EN-CA'>The reports
+and other documents on this web site have been submitted by persons other than
+Alberta Environment. The Department and the Government of Alberta cannot and do
+not warrant that the information on this web site is current, accurate,
+complete or free of errors. Persons accessing the information provided on this
+website should not rely on it, and any reliance on the information provided on
+this web site is taken at the sole risk of the user. Users of this web site are
+advised to conduct their own due diligence to satisfy themselves of the
+environmental condition of the property of interest. <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+mso-outline-level:3;'><u><span lang=EN-CA style='mso-ansi-language:
+EN-CA;mso-bidi-font-weight:bold'>No Liability<o:p></o:p></span></u></p>
+
+<p style=''><span lang=EN-CA style='mso-ansi-language:EN-CA'>Alberta
+Environment and the Government of Alberta assume no responsibility for errors
+or omissions in any of the information contained on this web site. <st1:State
+w:st="on"><st1:place w:st="on">Alberta</st1:place></st1:State> Environment and
+the Government of Alberta make no representation or warranty of any kind
+whatsoever with respect to the currency, accuracy, or completeness of the
+information provided on this web site or fitness of the information for any
+particular purpose. Alberta Environment and the Government of Alberta specifically
+disclaim any express or implied warranties related to the use of this website
+and its contents.<o:p></o:p></span></p>
+
+<p style=''><span lang=EN-CA style='mso-ansi-language:EN-CA'>In
+no event shall Alberta Environment, the Government of Alberta and their
+respective officers, employees, or agencies be liable to pay any damages as a
+result of any deficiency in the information contained in this web site,
+including without limitation outdated information, errors, omissions, and
+misstatements, and they shall not be liable for any loss, damage, or injury
+sustained or suffered by anyone as a result of reliance on the information contained
+on the web site.<o:p></o:p></span></p>
+
+<p class=MsoNormal><u>Help</u></p>
+<p>If you are having trouble using this site please email AENV
+<a href="mailto:ESAR-Support@gov.ab.ca">ESAR-Support@gov.ab.ca</a></p>
+</div></span>
+    
+                </td></tr>
+                <tr>
+                <td align="center"><input type="submit" name="cmdLegalOK" value="Agree" id="cmdLegalOK" />
+                </td>
+                <td align="center"><input type="submit" name="cmdLegalCancel" value="Disagree" id="cmdLegalCancel" /></td>
+                </tr></table>
+    
+            
+</div>
+
+                                      
+            <!--End Legal Modal Window -->   
+
+       	    <div id="accessHelpers">
+				<p id="skipToNav"><a href="#mainNav">Skip To Navigation</a></p>
+				<p id="skipToContent"><a href="#content">Skip To Content</a></p> 
+			</div>
+            <div id="header">
+                <div id="logo">
+                    <a href="http://aep.alberta.ca" title="Environment and Sustainable Resource Development"><img src="http://environment.alberta.ca/images/interface/AB-ENVSRD-logo.png" alt="Alberta Ministry of Environment and Sustainable Resource Development" /></a>
+                </div>
+                <ul id="metaNav">
+                    <li></li>
+                </ul>
+            </div> <!-- close header -->
+				<div id="breadcrumb">
+					<p><a href="http://www.alberta.ca/">Alberta.ca</a> &gt; <a href="http://aep.alberta.ca/">
+                        Environment and Parks</a> &gt; <a href="http://aep.alberta.ca/land/land-industrial/default.aspx">
+                        Land - Industrial</a> &gt; <a href="http://aep.alberta.ca/land/land-industrial/programs-and-services/default.aspx">Programs / 
+                        Services</a> &gt; <a href="http://aep.alberta.ca/land/land-industrial/programs-and-services/environmental-site-assessment-repository.aspx">Environmental 
+                        Site Assessment Repository (ESAR)</a></p>
+				</div> <!-- close breadcrumb which is opened inside con_HeaderBreadcrumb-->
+				<div id="mainNav">
+                    <ul>
+                        <li class="unselected isParent"><a href="http://aep.alberta.ca/Default.aspx">
+                            Home</a></li>
+                        <li class="unselected isParent"><a href="http://aep.alberta.ca/air/default.aspx">
+                            Air</a></li>
+                        <li class="selectedParent isParentActive"><a href="http://aep.alberta.ca/land/default.aspx">
+                            Land</a></li>
+                        <li class="unselected isParent"><a href="http://aep.alberta.ca/waste/default.aspx">
+                            Waste</a></li>
+                        <li class="unselected isParent"><a href="http://aep.alberta.ca/water/default.aspx">
+                            Water</a></li>
+                        <li class="unselected isParent"><a href="http://aep.alberta.ca/news/default.aspx">
+                            Newsroom</a></li>
+                        <li class="unselected isParent"><a href="http://aep.alberta.ca/about-us/default.aspx">
+                            About Us</a> </li>
+                    </ul>
+                    </div> <!-- close mainNav -->
+				<div id="contentColumn"style="">
+
+					<div id="upMain">
+	                                                     
+                        <div id="UpdatePanel1">
+		
+
+                            <div id="content-esar" style="width:912px;margin-left:8px;margin-top:10px;position:relative">
+
+                            <div id="content-esar-level1" style="width:100%;float:left;margin-top:0px">
+                              <h1>Environmental Site Assessment Repository (ESAR)</h1>
+                              <div id="mainNav-esar">
+					            <ul>
+						                    <li class="selected isParentCurrent"><a href="ESARmain.aspx">Search Form</a></li>
+								            <li class="unselected isParent" style=""><a href="javascript:GetMapUrl()">Map Search</a></li>
+								            <li class="unselected isParent" style=""><a target="_blank" href="ftp://ftp.gov.ab.ca/env/ESAR/CompleteEsaSiteList.csv">Download 
+                                                Complete ESA list (Updated Weekly)</a></li>
+					            </ul>			
+				            </div> <!-- close mainNav -->  
+                                 
+                                    <div id="esarSearchErrors" style="width:100%;float:left">
+                                        <span id="lblError"><font color="Red"></font></span>    
+                                    </div>
+                            </div>
+                            <div id="content-esar-level2" style="width:100%;float:left;clear:both">
+                                
+                                <div id="esarSearchForms" style="width:480px;float:left;position:relative;margin-top:10px;">
+                                                                                            
+                                    <div id="esarSearchForm" style="width:100%;float:left;background-color:#ffffff">                                                 
+
+                                                        
+                                                        <div id="pnlATS" style="position:relative">
+			
+                                                        <div style="position:relative;clear:both;width:100%;background-color:#ffffff">
+                                                        <h2 class="noselect" onclick="">ATS Search </h2>
+                                                        <div id="showhelpATS" style="position:absolute;top:28px;left:10px;font-weight:bold;font-size:10px;color:#999999" onclick="javascript:toggleDiv('hlpStringATS','togglehelpATS');"><a class="togglehelpATS">
+                                                            &#9658; SHOW HELP</a></div>
+                                                        <div style="display:none;position:relative;width:100%;top:3px;bottom:15px;clear:both;background-color:#ffffff" id="hlpStringATS"></div>
+                                                            <p style="clear:both;float:left;display:inline-block;padding-top:10px;margin-left:20px">
+                                                                W&nbsp;<input name="txtMeridian" type="text" maxlength="1" id="txtMeridian" />
+                                                                -&nbsp;<input name="txtRange" type="text" maxlength="3" id="txtRange" />
+                                                                -&nbsp;<input name="txtTownship" type="text" maxlength="3" id="txtTownship" />
+                                                                -&nbsp;<input name="txtSection" type="text" id="txtSection" />
+                                                                -[&nbsp;<input name="txtQuarterSection" type="text" id="txtQuarterSection" />
+                                                                &nbsp;] -[&nbsp;<input name="txtLSD" type="text" id="txtLSD" />&nbsp;]<input type="submit" name="cmdSearchATS" value="Search" id="cmdSearchATS" class="searchButton" />                                            
+                                                        <br /><br />
+                                                        <span style="color:#666666;line-height:12px">Format: MER-RGE-TWP-SEC-[QTR]-[LSD]<br />
+                                                        <span style="color:Red;">[ ]</span> denotes that the quarter section and legal 
+                                                                subdivision are optional.</span>
+                                                        </p>
+                                                        </div>
+                                                        
+		</div>
+                                                                                                                                                      
+                                                        <div id="pnlPBL" style="position:relative;clear:both;border-top:solid #f7f7f7 10px;background-color:#ffffff">
+			
+                                                        <div style="position:relative;clear:both;width:100%;background-color:#ffffff">
+                                                        <h2 class="noselect" onclick="">PBL Search </h2>
+                                                        <div id="showhelpPBL" style="position:absolute;top:28px;left:10px;font-weight:bold;font-size:10px;color:#999999" onclick="javascript:toggleDiv('hlpStringPBL','togglehelpPBL');"><a class="togglehelpPBL">
+                                                            &#9658; SHOW HELP</a></div>
+                                                        <div style="display:none;position:relative;width:100%;top:3px;bottom:15px;clear:both;background-color:#ffffff" id="hlpStringPBL"></div>
+                                                            <p style="clear:both;float:left;display:inline-block;padding-top:10px;margin-left:20px">
+                                                                Plan:<input name="txtPlan" type="text" id="txtPlan" />
+                                                                &nbsp;Block:&nbsp;[<input name="txtBlock" type="text" id="txtBlock" />] 
+                                                                Lot:&nbsp;[<input name="txtLot" type="text" id="txtLot" />]
+                                                        <input type="submit" name="cmdSearchPBL" value="Search" id="cmdSearchPBL" class="searchButton" />
+                                                        <br /><br />
+                                                        <span style="color:#666666;line-height:12px">Format: Plan - [Block] - [Lot]<br />
+                                                        <span style="color:Red;">[ ]</span> denotes that the Block and/or Lot are optional.</span>
+                                                        </p>
+                                                        </div>
+
+                                                    
+		</div>
+
+                                    </div>
+                                    <div id="esarSearchResult" style="width:100%;clear:both;padding-top:10px;position:relative">
+                                                            <h2 id="esar-search-results-header" style="" onclick="">Search Results</h2>
+                                                            <span style="position:absolute;top:18px;right:15px;color:#45a83a;font-weight:bold;font-size:18px"><span id="lblESAResultCount"></span></span>
+                                                            <div id="showhelpESA" style="position:absolute;top:40px;left:10px;font-weight:bold;font-size:10px;color:#999999" onclick="javascript:toggleDiv('hlpStringESA','togglehelpESA');"><a class="togglehelpESA">
+                                                                &#9658; SHOW HELP</a></div>
+                                                        <div style="display:none;position:relative;width:100%;top:5px;bottom:15px;clear:both" id="hlpStringESA"></div>                    
+                                                        <p>
+                                                            <div>
+
+		</div>
+                                                            </p>
+                                                            <p><span id="lblESAMessage"><font color="Red"></font></span></p>
+                                    </div>                                                                                                 
+                                </div>
+                                <div id="esarDocumentSelectDelivery" style="width:410px;float:right;margin-top:10px">
+
+                                <div id="esarSelectSearch" style="float:left">
+                                    <div id="esarSelectOptionsNote" style="width:100%;float:left;clear:both; overflow:hidden;">
+                                         <div style="padding:0 0 6px 0;margin-bottom:10px">
+                                    <div id="esar" style="width:410px;float:left;margin-bottom:10px">
+
+                                      <div style="width:100%;height:100%;float:left"> 
+                                         <div style="width:100%;height:100%;float:left;padding:10px 10px 10px 10px;margin-bottom:10px;background-color:#ffffff;overflow:hidden">
+                                        
+                                           <div style="width:370px;height:100%;float:left"><span style="font-weight:bold">Note:</span><br /> 
+                                               An ESA document does not necessarily mean the site is, or ever was, 
+                                               contaminated. Please refer to the studies and reports to determine the condition 
+                                               of the site.</div>
+                                           <div style="width:370px;height:100%;float:left"><span style="font-weight:bold">Place 
+                                               Name</span>, <span style="font-weight:bold">Street Address</span>, and <span style="font-weight:bold">
+                                               Coordinate Searches</span> are avaliable on the map page</div>
+                                        </div>
+                                        <div style="width:100%;float:left;padding:10px 10px 10px 10px;background-color:#ffffff;overflow:hidden">
+                                           
+                                           <div style="width:370px;height:100%;float:left">-A marker identified as ESA is the 
+                                               location of a site where Alberta Environment and Parks has received scientific and/or 
+                                               technical information</div>
+                                           <div style="width:370px;height:100%;float:left"><br />-A marker identified as REC is 
+                                               the location of a site where Alberta Environment and Parks has received an application for 
+                                               a reclamation certificate.</div>
+                                           <div style="width:370px;height:100%;float:left;margin-bottom:10px"><br />
+                                                    Comments and questions can be directed to:<br />
+                                                    ESAR-Support@gov.ab.ca
+                                           </div>
+                                       </div>
+                                    </div>
+                                    
+                                    </div>
+                                 
+                                </div>
+             
+                                </div>                                
+                                </div>
+
+                                    <div id="esarDocuments" style="width:100%;float:left;position:relative">
+
+                                                            <h2 onclick="">Document Results</h2>
+                                                            <span style="position:absolute;top:10px;right:15px;color:#45a83a;font-weight:bold;font-size:18px"><span id="lblDocResultCount"></span></span>
+                                                            <div id="showhelpDOC" style="position:absolute;top:30px;left:10px;font-weight:bold;font-size:10px;color:#999999" onclick="javascript:toggleDiv('hlpStringDOC','togglehelpDOC');"><a class="togglehelpDOC">
+                                                                &#9658; SHOW HELP</a></div>
+                                                        <div style="display:none;position:relative;width:100%;top:5px;bottom:15px;clear:both" id="hlpStringDOC"></div>
+
+                                                        <p>
+                                                            <div>
+
+		</div>
+                                                            </p>
+                                                            <p><span id="lblDocMessage"><font color="Red"></font></span></p>
+                                                                
+       
+                                    </div>
+                                    <div id="esarDocumentDeliveryOptions" style="width:100%;clear:both">
+
+                                                            <h1 onclick="">Document Delivery</h1>
+                                                            <span style="position:absolute;top:10px;right:15px;color:#45a83a;font-weight:bold;font-size:18px"><span id="lblDocCount"></span></span>
+    
+                                                        <div id="pnlDeliver">
+			
+                                                            <div style="width:100%">
+                                                                <div style="width:100%;float:left"><input id="rdoDelDownload" type="radio" name="Delivery" value="rdoDelDownload" checked="checked" /><label for="rdoDelDownload">Download</label>
+                                                                <input id="rdoDelEmail" type="radio" name="Delivery" value="rdoDelEmail" /><label for="rdoDelEmail">Email</label>
+                                                                <input name="txtDelEmailAddress" type="text" id="txtDelEmailAddress" /></div>
+                                                                <div style="width:100%;float:left;padding-top:10px"><input type="submit" name="cmdDeliver" value="Deliver Selected Documents" id="cmdDeliver" /></div>
+                                                                                                  
+                                                            </div>
+                                                            
+		</div>
+                                                                
+                                                            <div id="pnlImageVerify" class="modalPopup" style="display: none">
+			
+                                                                <table width="100%">
+                                                                <tr>
+                                                                    <td  valign="top" style="height: 18px">
+                                                                        Image Verification</td>
+                                                                    <td  valign="top" style="width: 288px; height: 18px">
+                                                                        <img src="ImageVerification.axd?uid=362cc3e3-5733-47c8-8c7c-303f948d0bea" id="ImageVerifier1" height="65" width="156" /><script language='javascript'>function RefreshImageVerification(id,srcname){ var elm = document.getElementById(id);  var dt = new Date();  elm.src=srcname + '&ts=' + dt;  return false;}</script>&nbsp;<a href='#' onclick="return RefreshImageVerification('ImageVerifier1','~/ImageVerification.axd?&uid=362cc3e3-5733-47c8-8c7c-303f948d0bea');">Refresh</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td  valign="top">
+                                                                    </td>
+                                                                    <td  valign="top" style="width: 288px">
+                                                                        <input name="txtImgVerifyCode" type="text" id="txtImgVerifyCode" /></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td  valign="top" style="width: 288px">
+                                                                        <input type="submit" name="btnSubmit" value="Submit" id="btnSubmit" /></td>
+                                                                    <td valign="top">     <input type="submit" name="CancelButton" value="Cancel" id="CancelButton" /></td>
+                                                                </tr>
+                                                                </table>
+                                                            
+		</div>
+                                                            <br />
+                                                            
+    
+                                    </div>
+                                </div>
+                            </div>
+                            </div>     
+                                              
+                        
+	</div>             
+                        
+</div>
+					<br />
+
+						
+					    <div style="clear:both;float:left">1.1.10.1</div>
+				</div> <!-- close contentColumn -->
+                <div id="footer">
+					<div id="footerLogo">
+						<a href="http://aep.alberta.ca/"><img src="http://environment.alberta.ca/images/interface/AB-logo.png" alt="Alberta Government" /></a>
+					</div>
+					<ul id="goaLinks">
+						<li>                                                       
+							<a href="http://alberta.ca/">Home</a></li>
+						<li>
+							<a href="http://www.alberta.ca/contact.cfm">Alberta Connects</a></li>					
+					</ul>
+					<ul id="siteLinks">
+						
+						<li>
+							<a href="http://aep.alberta.ca/about-us/using-this-site/default.aspx">Using this Site</a></li>
+						<li>
+							<a href="http://aep.alberta.ca/about-us/using-this-site/privacy/default.aspx">Privacy</a></li>
+						<li>
+							<a href="http://www.alberta.ca/budget-expenses-spending.cfm">Government Expense Disclosures</a></li>
+						</ul>
+					<p id="copyright">© 1995 - 2017 Government of Alberta <a href="http://aep.alberta.ca/about-us/using-this-site/copyright-disclaimer.aspx">
+							Copyright and Disclaimer</a></p>
+				</div> <!-- close footer --> 
+
+			
+
+<script type="text/javascript">
+//<![CDATA[
+(function() {var fn = function() {AjaxControlToolkit.ModalPopupBehavior.invokeViaServer('mpeLegal', true); Sys.Application.remove_load(fn);};Sys.Application.add_load(fn);})();Sys.Application.initialize();
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","CancelControlID":"cmdLegalCancel","DropShadow":true,"OkControlID":"cmdLegalOK","OnCancelScript":"window.location = \u0027http://esrd.alberta.ca/lands-forests/land-industrial/programs-and-services/environmental-site-assessment-repository.aspx\u0027;","OnOkScript":"LegalOK();","PopupControlID":"pnlLegal","dynamicServicePath":"/esarmain.aspx","id":"mpeLegal"}, null, null, $get("LinkButton1"));
+});
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","DropShadow":true,"PopupControlID":"pnlImageVerify","dynamicServicePath":"/esarmain.aspx","id":"ModalPopupExtender1"}, null, null, $get("cmdDeliver"));
+});
+//]]>
+</script>
+</form>
+		</div> <!-- close page -->
+	</div> <!-- close pageWrap --> 
+</body>
+</html>

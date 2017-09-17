@@ -19,6 +19,13 @@
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="./assets/js/main.js"></script>
+    <script>
+      function OpenPage() {
+      	var data = '565';
+      	var OpenWindow = window.open('http://www.esar.alberta.ca/esarmain.aspx');
+      	OpenWindow.$( document ).ready().getElementById('txtPlan').value = data;
+      }
+    </script>
   </head>
   <body>
     <div id="map"></div>
@@ -30,7 +37,7 @@
           </div>
         </div>
         <div id="center-title" class="row around">
-          <h1>Contaminated Sites in Edmonton</h1>
+          <h1 id="title-text">Potentially Contaminated Sites</h1>
         </div>
         <div class="row bottom-row">
           <h3 id="center-line" class="col col-6">WHY IT MATTERS</h3>
@@ -38,16 +45,19 @@
         </div>
       </div>
       <div class="catchline">
-        <h2>Have you ever wondered whats in your backyard?</h2>
+        <h1 class="hide-in-small">EDMONTON</h1>
+        <h2 class="hide-in-small">ever wondered whats in your backyard?</h2>
         <h2 class="contrast-color">This is a real-time map. Learn what it means for you. </h2>
       </div>
     </div>
     <div id="yItMatters" class="content">
       <h1>Why It Matters</h1>
       <div class="row">
-        <h2 class="col col-4 push-right">What Can Happen</h2>
+        <h2 class="col col-4"> 
+          <u class="underline">What Can Happen</u>
+        </h2>
         <div class="text col col-7 push-right">
-          <p>Worst case scenarios have already happened in Alberta. The community of Lynnwood in S.E. Calgary was built in the early 1980’s on the site of an old Imperial Oil refinery that operated until 1977. Signs of contamination were found as early as 1985. In 2001, after 20 years of residents living on highly contaminated soil, the City of Calgary issued a notice to the 230 plus homes indicating they would would need to vacate their properties. However, Imperial Oil spent several years fighting the court order to clean up the contaminants and it wasn’t until 2006 that remediation finally began. As of 2015, 35 years after the community was built and almost 15 years after finding contaminants, news reports indicate the clean-up was entering its final stages. Adverse health effects due to contaminants were difficult to prove. To date, there have been no successful cases against Imperial Oil relating to the health problems potentially caused by the contaminants. <a href="http://www.calgarysun.com/2015/10/31/after-15-years-of-cleaning-contaminated-calgary-neighbourhood-new-life-looming-for-lynnview-ridge">[1]</a></p>
+          <p>The community of Lynnwood in S.E. Calgary was built in the early 1980’s on the site of an old Imperial Oil refinery that operated until 1977. Signs of contamination were found as early as 1985. In 2001, after 20 years of residents living on highly contaminated soil, the City of Calgary issued a notice to the 230 plus homes indicating they would would need to vacate their properties. However, Imperial Oil spent several years fighting the court order to clean up the contaminants and it wasn’t until 2006 that remediation finally began. As of 2015, 35 years after the community was built and almost 15 years after finding contaminants, news reports indicate the clean-up was entering its final stages. Adverse health effects due to contaminants were difficult to prove. To date, there have been no successful cases against Imperial Oil relating to the health problems potentially caused by the contaminants. <a href="http://www.calgarysun.com/2015/10/31/after-15-years-of-cleaning-contaminated-calgary-neighbourhood-new-life-looming-for-lynnview-ridge">[1]</a></p>
           <p>On top of large contaminated sites, numerous other smaller contaminated sites exist as well. Owners of these smaller sites often leave them vacant for decades or find ways charge taxpayers for the clean-up costs. One gas station in Bowness, another Calgary community, leaked as much as 9,000 Litres of gasoline into the ground which migrated underneath residential homes. After insufficiently preventing migration, the owners of the gas station transferred the property to a newly incorporated company. As a result, the Province has had to step in and estimates about $4.3 Million for clean-up. As of a 2017 news report, 7 years after residents first complained of gas fumes in their homes, the contaminants are only beginning to be removed despite soil tests finding benzene levels reaching 480 times safe levels.<a href="http://calgaryherald.com/news/local-news/taxpayers-face-4-3-million-bill">[2]</a></p>
           <p>Surprisingly, cities in Alberta do not have the legal power to inspect and remediate contaminated privately owned contaminated sites and requires provincial approval for they do own. Perhaps more concerning, though, is that the neither the cities nor the province has an extensive catalogue of contaminated sites. Owners of property, and the Province, hesitate to avoid cataloguing contaminated sites since determining a site is contaminated can lower the value of the land.<a href='http://www.cbc.ca/news/canada/calgary/calgary-contaminated-toxic-sites-cleanup-city-charters-1.4150058')>[3]</a>And since the cost of remediation often exceeds the property value, private land owners often choose the less expensive option of leaving the site abandoned. Some contaminated sites remain vacant for decades, wasting value inner-city real estate. One gas station on Edmonton’s popular Whyte Avenue, while now slated for a large multi-family development, remained vacant for nearly 20 years. These abandoned sites increase the problem of urban sprawl by leaving valuable inner-city land undeveloped and unused. <a href="https://beta.theglobeandmail.com/report-on-business/industry-news/property-report/life-after-corner-gas-the-challenges-of-developing-old-service-stations/article32219739/?ref=http://www.theglobeandmail.com">[4]</a></p>
         </div>
@@ -57,7 +67,9 @@
     <div id="whatToDo" class="content">
       <h1>What Can I Do?</h1>
       <div class="row">
-        <h2 class="col col-4">Use The Map</h2>
+        <h2 class="col col-4 push-right">
+          <u class="underline">Use The Map</u>
+        </h2>
         <div class="text col col-7 push-right">
           <p>The map above is a listing of all sites that have completed a Phase II Environmental Site Assessment (ESA). That means the owner of the property first conducted a Phase I ESA. Phase I ESA’s don’t involve any actual testing, but use historical and current information to determine if the site is a likely candidate for contamination. If the Phase I ESA determines the site may be contaminated, the owner must conduct a Phase II ESA. The Phase II tests soil and groundwater to determine if, and to what extent, a site is contaminated. Once the owner has found remediated the site, or found some interim solution to contain the contamination, they may apply for a Phase III or Phase IV. With that in mind, note the following about the map:</p>
           <ul>
@@ -67,7 +79,9 @@
         </div>
       </div>
       <div class="row">
-        <h2 class="col col-4 push-right">Learn How The Remediation Process Works</h2>
+        <h2 class="col col-4 push-right"> 
+          <u class="underline">Learn How The Remediation Process Works</u>
+        </h2>
         <div class="text col col-7 push-right">
           <p>Read the official documents to find out more about contaminated sites within the Province and the development of Brownfields(Contaminated sites with the potential for redevelopment):</p>
           <ul>
@@ -77,13 +91,17 @@
         </div>
       </div>
       <div class="row">
-        <h2 class="col col-4 push-right">Consider The Trade Offs</h2>
+        <h2 class="col col-4 push-right"> 
+          <u class="underline">Consider The Trade Offs</u>
+        </h2>
         <div class="text col col-7 push-right">
           <p>Many of the services that are essential to making a city possible can contaminate the ground. Our municipalities have regulations and oversight into what is a reasonable risk. But the people most affected by contamination, those living in and around contaminated sites, often have no idea what kind of risks they are taking or what recourse they have in the event of contamination. Understanding the location of potential contaminants and the clean-up process allows citizens to make more informed decisions about what risks they are willing to accept and what kind of expectations a city should have of its business owners in the life-cycle of sites potentially contaminating the ground.</p>
         </div>
       </div>
       <div class="row">
-        <h2 class="col col-4 push-right">Get Involved</h2>
+        <h2 class="col col-4 push-right"> 
+          <u class="underline">Get Involved</u>
+        </h2>
         <div class="text col col-7 push-right">
           <ul>
             <li>Share On FB/Twitter</li>
@@ -93,14 +111,18 @@
       </div>
       <h1>How Did You Build This?</h1>
       <div class="row">
-        <h2 class="col col-4 push-right">With Open Data</h2>
+        <h2 class="col col-4 push-right"> 
+          <u class="underline">With Open Data</u>
+        </h2>
         <div class="text col col-7 push-right">
           <p>All of the information on used for the map is freely available from the Government of Alberta and the City of Edmonton’s Open Data Library. Edmonton is the first Organization in Canada and the United States to adopt the Open Data Charter as part of its Open City Initiative. Edmonton’s Open City Initiative is about using the massive amount of data the city of Edmonton possess as a strategic asset that is open by default and private when necessary. Open Data means individuals, businesses, and developers (like myself) can taken advantage of the datasets easily and use them to help create an informed and engaged public.</p>
           <p>Read More About Edmonton's Open City Initiative <a href='https://www.edmonton.ca/city_government/documents/PDF/CityofEdmonton_OpenDataStrategy.pdf'>here</a>.</p>
         </div>
       </div>
       <div class="row">
-        <h2 class="col col-4 push-right">With Magic</h2>
+        <h2 class="col col-4 push-right"> 
+          <u class="underline">With Magic</u>
+        </h2>
         <div class="text col col-7 push-right">
           <p>Comparing hundreds of thousands of entries in multiple databases was done primarily with Python. For those who with a technical itch to scratch you can read the code <a href='http://www.github.com/jordanlos/wimby'>here</a>.</p>
         </div>

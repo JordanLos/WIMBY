@@ -1,3 +1,42 @@
+@media (max-width: 768px) {
+  #title-text {
+    font-size: 50px; }
+
+  .text-box {
+    margin-top: 72px; }
+
+  #numberBox {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    margin: 0 auto;
+    background: #EB6902;
+    border: 2px solid white; }
+
+  #number {
+    font-size: 50px; }
+
+  .hide-in-small {
+    display: none; }
+
+  #center-line {
+    border-bottom: 1px solid #EB6902; }
+
+  .catchline {
+    position: relative; }
+
+  .contrast-color {
+    position: absolute;
+    bottom: -160px;
+    font-size: 30px; }
+
+  .underline {
+    text-align: center; }
+
+  .content h2 {
+    text-align: center; } }
 body {
   background: #0e1d28;
   padding: 0;
@@ -36,15 +75,18 @@ h1, p, h2 {
   .text-box h1 {
     font-size: 72px; }
 
-#numberBox {
-  position: absolute;
-  top: 0;
-  width: 20%;
-  padding: 5px 10px 25px 10px;
-  transform: translateY(-50%);
-  background: #EB6902;
-  border: 2px solid white; }
+@media (min-width: 768px) {
+  #numberBox {
+    position: absolute;
+    top: 0;
+    width: 20%;
+    padding: 5px 10px 25px 10px;
+    transform: translateY(-50%);
+    background: #EB6902;
+    border: 2px solid white; }
 
+  .content h2 {
+    text-align: right; } }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 500; }
@@ -82,16 +124,38 @@ p {
 
 .content {
   width: 83.33333%;
-  margin: 0 auto; }
+  margin: 5% auto; }
+  .content .row {
+    margin-top: 2%;
+    margin-bottom: 2%; }
   .content h1 {
     text-align: center;
     border: 2px solid #EB6902;
     padding: 12px 0; }
   .content h2 {
-    text-align: right;
     vertical-align: bottom; }
   .content p {
     padding-top: 8px;
     text-align: justify; }
+
+li {
+  font-family: 'Lato', sans-serif;
+  font-weight: 100;
+  color: white; }
+
+a {
+  text-decoration: none; }
+
+.h2 {
+  font-family: 'Cormorant Garamond', sans-serif;
+  font-weight: 300;
+  color: white;
+  text-align: justify-right; }
+
+.underline {
+  text-decoration: none;
+  margin: 0 0;
+  border-bottom: 1px solid #EB6902;
+  text-align: right; }
 
 /*# sourceMappingURL=main.css.map */

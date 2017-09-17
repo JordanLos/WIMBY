@@ -279,7 +279,7 @@
 			var marker = new google.maps.Marker({
 				position: latLng,
 				map: map2,
-				html: sites[i].house + ' ' + sites[i].street + "<br><a target='_blank' href='http://www.esar.alberta.ca/esarmain.aspx'>Plan:  " + sites[i].plan + "<br>Block: " + sites[i].block + "<br>Lot:   " + sites[i].block
+				html: sites[i].house + ' ' + sites[i].street + "<br><a target='_blank' href='http://www.esar.alberta.ca/esarmain.aspx'>Plan:  " + sites[i].plan + "<br>Block: " + sites[i].block + "<br>Lot:   " + sites[i].lot
 			});
 
 			heatmapData.push(latLng);

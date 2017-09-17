@@ -20,7 +20,7 @@ def download():
     # Print Length of List to confirm Download Worked
     print('There are ' +  str(len( EsaList )) + ' items in the file' )
         
-    with open( './data/ESA-data.txt', 'w' ) as file_object:
+    with open( './../../data/ESA-data.txt', 'w' ) as file_object:
         for item in EsaList:
             file_object.write( str( item ) +"\n" )
         print('Saving to: ESA-data.txt')
@@ -57,8 +57,8 @@ def decomposeESA(rawESA):
     6. 10TM Point Coordinates  """
 
     inProcessESA = []
+    # takes first numbers from LLD
     for row in rawESA:
-        # takes first numbers from LLD
         lld = row[3].split(';')[0]
 
         # Tests for Edmonton LLD number ('2' in the third digit)
@@ -133,7 +133,8 @@ def findContaminatedSites(rawEdm, ESA_PBL):
     class Contaminated_Site():
         """An individual contaminated site"""
 
-        def __init__(self, house, street, plan, block, lot, lat, lng):
+        def __init__(self, esrdFileNum, house, street, plan, block, lot, lat, lng):
+            self.esrdFileNum = esrdFileNum
             self.house = house
             self.street = street
             self.plan = plan
@@ -153,6 +154,7 @@ def findContaminatedSites(rawEdm, ESA_PBL):
 
         # Break the rawEdm into components, including its unique PBL number
         else: 
+            esrdFileNum = row[0]
             pbl = decomposeEdmLine( row[4] )
             house = row[2]
             street = row[3]
@@ -166,6 +168,6 @@ def findContaminatedSites(rawEdm, ESA_PBL):
         # it to the list of contaminated sites
         for entry in ESA_PBL:
             if pbl[0] == entry:
-                site = Contaminated_Site( house, street, plan, block, lot, lat, lng )
+                site = Contaminated_Site( esrdFileNum, house, street, plan, block, lot, lat, lng )
                 contaminatedSites.append( site )
     return contaminatedSites

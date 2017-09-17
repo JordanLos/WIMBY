@@ -1,6 +1,7 @@
 @import "kube";
 @import "palettes";
 @import "layouts/shared";
+@import "mobile";
 $primary-dark: darken( #173042, 7%);
 
 body {
@@ -48,14 +49,21 @@ h1, p, h2 {
 		font-size: 72px;
 	}
 }
-#numberBox {
-	position: absolute;
-	top: 0;
-	width: 20%;
-	padding: 5px 10px 25px 10px;
-	transform: translateY(-50%);
-	background: $contrast-light;
-	border: 2px solid $near-white;
+@media (min-width: 768px) {
+	#numberBox {
+		position: absolute;
+		top: 0;
+		width: 20%;
+		padding: 5px 10px 25px 10px;
+		transform: translateY(-50%);
+		background: $contrast-light;
+		border: 2px solid $near-white;
+	}
+	.content {
+		h2 {
+			text-align: right;
+		}
+	}
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -99,15 +107,19 @@ p {
 }
 
 .content {
+
 	width: 83.33333%;
-	margin: 0 auto;
+	margin: 5% auto;
+	.row {
+		margin-top: 2%;
+		margin-bottom: 2%;
+	}
 	h1 {
 		text-align: center;
 		border: 2px solid $contrast-light;
 		padding: 12px 0;
 	}
 	h2 {
-		text-align: right;
 		vertical-align: bottom;
 	}
 	p {
@@ -116,4 +128,28 @@ p {
 	}
 }
 
+li {
+	font-family: 'Lato', sans-serif;
+	font-weight: 100;
+	color: $near-white;
+}
+a {
+	text-decoration: none;
+}
 
+// Fixes Ugly Text Decoration Border by giving
+// Each indivudal letter its own span and border
+	
+.h2 {
+	font-family: 'Cormorant Garamond', sans-serif;
+	font-weight: 300;
+	color: $near-white;
+	text-align: justify-right;
+}
+
+.underline {
+	text-decoration: none;
+	margin: 0 0;
+	border-bottom: 1px solid $contrast-light;
+	text-align: right;
+}
